@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>TOBIAS Project - SKOS Explorable Explanation</title>
+
+	<!-- Tangle -->
+	<script type="text/javascript" src="Tangle.js"></script>
+
+	<!-- TangleKit (optional) -->
+	<link rel="stylesheet" href="TangleKit/TangleKit.css" type="text/css">
+	<script type="text/javascript" src="TangleKit/mootools.js"></script>
+	<script type="text/javascript" src="TangleKit/sprintf.js"></script>
+	<script type="text/javascript" src="TangleKit/BVTouchable.js"></script>
+	<script type="text/javascript" src="TangleKit/TangleKit.js"></script>
+
+	<script type="text/javascript" src="TobiasTangle.js"></script>
+
+	<!-- example -->
+	<script type="text/javascript">
+
+		function setUpTangle () {
+
+			var element = document.getElementById("skosConceptMain");
+
+			var tangle = new Tangle(element, {
+				initialize: function () {
+					this.cookies = 4;
+					this.caloriesPerCookie = 50;
+				},
+				update: function () {
+					this.calories = this.cookies * this.caloriesPerCookie;
+				}
+			});
+		}
+
+	</script>
+</head>
+
+<body onload="setUpTangle();">
+	<h1>TOBIAS Project - SKOS Explorer</h1>
+
+	<p>This is a simple reactive document.</p>
+
+
+	<p id="skosConceptMain">
+		<span data-var="cookies" class="TKAdjustableNumber" data-min="2" data-max="100"> cookies</span>
+		<span data-var="cookies" class="TKNumberField" data-min="2" data-max="100"></span>
+
+		<span data-var="calories"></span> calories
+
+
+		<br />
+		<strong>Generated skos:Concept</strong>
+		<div>
+		<pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;skosConcept rdf:about="http://www.ihr-tobias.org/concepts/33052/Abadan crisis (1951)"&gt;
+    &lt;skos:prefLabel&gt;</pre></div>
+    <span data-var='calories'></span>
+    <div><pre>&lt;/skos:prefLabel&gt;
+    &lt;skos:altLabel&gt;Crises, Abadan (1951)&lt;/skos:altLabel&gt;
+&lt;/skosConcept&gt;
+		</pre></div>
+
+
+</body>
+</html>
