@@ -25,44 +25,76 @@
 
 			var tangle = new Tangle(element, {
 				initialize: function () {
-					this.cookies = 4;
-					this.caloriesPerCookie = 50;
+					this.concept = 'Religion and faith';
+					this.uriFragment = 'http://www.tobias.org';
+					this.ident = 100;
 				},
 				update: function () {
-					this.calories = this.cookies * this.caloriesPerCookie;
+					this.conceptDisplay = this.concept;
+					this.uriFragmentDisplay = this.uriFragment;
+					this.uriFragmentForURIDisplay = cleanText(this.concept);
+					this.identDisplay = this.ident;
+
 				}
 			});
 		}
 
+		/* Function to transform plain text for the URI.
+		 * Removes punctuation, lowercase characters, transform space to underscore.
+		 */
+		function cleanText(txt) {
+			newTxt = txt.replace(/ /g, '_').replace(/[.,\/#!$%\^&\*;:{}=\-'`~()]/g,"").toLowerCase();
+			return newTxt;
+		}
+
 	</script>
+	<style>
+		.field {
+			float: left;
+			margin-right: 10px;
+		}
+		.xml {
+			clear: both;
+		}
+	</style>
 </head>
 
 <body onload="setUpTangle();">
 	<h1>TOBIAS Project - SKOS Explorer</h1>
+	<p>This is a simple reactive document to help explore SKOS Concepts.</p>
 
-	<p>This is a simple reactive document.</p>
+	<div id="skosConceptMain">
+		<div class="field">
+			<label>Concept</label>:<br />
+			<span>Type your concept here</span><br />
+			<span data-var="concept" class="TBTextField" data-min="2" data-max="100" data-size='20' />
+			<br /><br />
+		</div>
+		<div class="field">
+			<label>URI fragment</label>:<br />
+			<span>Enter the base uri for the ontology</span><br />
+			<span data-var="uriFragment" class="TBTextField" data-min="2" data-max="100" data-size='20' />
+			<br /><br />
+		</div>
+		<div class="field">
+			<label>Identifier</label>:<br />
+			<span>Enter a numeric identifier for this concept</span><br />
+			<span data-var="ident" class="TKAdjustableNumber" data-min="1" data-max="1000" data-size='20'></span>
+			<br /><br />
+		</div>
 
-
-	<p id="skosConceptMain">
-		<span data-var="cookies" class="TKAdjustableNumber" data-min="2" data-max="100"> cookies</span>
-		<span data-var="cookies" class="TKNumberField" data-min="2" data-max="100"></span>
-
-		<span data-var="calories"></span> calories
-
-
-		<br />
-		<strong>Generated skos:Concept</strong>
-		<div>
-		<pre>
+		<div class="xml">
+		<p>
+			<strong>Generated skos:Concept</strong>
+			<pre>
 &lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&lt;skosConcept rdf:about="http://www.ihr-tobias.org/concepts/33052/Abadan crisis (1951)"&gt;
-    &lt;skos:prefLabel&gt;</pre></div>
-    <span data-var='calories'></span>
-    <div><pre>&lt;/skos:prefLabel&gt;
-    &lt;skos:altLabel&gt;Crises, Abadan (1951)&lt;/skos:altLabel&gt;
+&lt;skosConcept rdf:about="<strong><span data-var='uriFragmentDisplay' />/concepts/<span data-var='identDisplay' />/<span data-var='uriFragmentForURIDisplay' /></strong>"&gt;
+    &lt;skos:prefLabel&gt;<strong><span data-var='conceptDisplay' /></strong>&lt;/skos:prefLabel&gt;
 &lt;/skosConcept&gt;
-		</pre></div>
-
+			</pre>
+		</p>
+		</div>
+	</div><!-- End id='skosConceptMain -->
 
 </body>
 </html>
