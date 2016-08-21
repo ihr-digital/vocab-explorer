@@ -1,0 +1,171 @@
+
+<html>
+    <head>
+        <title>Bibliography of British and Irish History vocabulary explorer</title>
+        
+        <!-- Mootools AccessibleTree libs @src https://github.com/mashalla/tree/-->
+        <script src="./js/mashalla-tree/mootools-core.js" type="text/javascript"></script>
+        <script src="./js/mashalla-tree/mootools-more.js" type="text/javascript"></script>
+        <script type="text/javascript" src="./js/mashalla-tree/tree.js"></script>
+
+        <!-- Tangle and TangleKit libs @src http://worrydream.com/Tangle/ -->
+        <script type="text/javascript" src="./js/TangleKit/Tangle.js"></script>
+        <link rel="stylesheet" href="./css/TangleKit.css" type="text/css">
+        <script type="text/javascript" src="./js/TangleKit/sprintf.js"></script>
+        <script type="text/javascript" src="./js/TangleKit/BVTouchable.js"></script>
+        <script type="text/javascript" src="./js/TangleKit/TangleKit.js"></script>
+
+        <!-- Tobias Explorer - config and setup scripts -->
+        <script type="text/javascript" src="./js/TobiasTangle.js"></script>
+        <script type="text/javascript" src="./js/TobiasExplorer.js"></script>
+        <link href="./css/tobias.css" type="text/css" rel="stylesheet" />
+    </head>
+
+    <body>
+<h1>Bibliography of British and Irish History</h1>
+<h2>Vocabulary and SKOS explorer</h2>
+
+<div id='controls'>
+    <p>Blah blah blah... intro paragraphs go here</p>
+
+    <button type='button' id='toggleSyns'>Toggle synonymns</button>
+</div>
+
+<div id="leftCol">
+    <ul class="tree" id="treeView">
+        <li><span>
+          Collapsible lists</span>
+          <ul class="collapsibleList">
+            <li><span>
+              Actions</span>
+              <ul>
+                <li><span>
+                  Creation</span><span>
+                  Creation2</span><span>
+                  Creation3</span>
+                  <ul>
+                    <li><span>apply()</span></li>
+                    <li class="lastChild"><span>applyTo(node)</span></li>
+                  </ul>
+                </li>
+                <li class="lastChild"><span>
+                  Toggling</span>
+                  <ul>
+                    <li><span>Expanding/opening</span></li>
+                    <li class="lastChild"><span>Collapsing/closing</span></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li class="lastChild">
+              Uses
+              <ul>
+                <li><span>Directory listings</span></li>
+                <li><span>Tree views</span></li>
+                <li class="lastChild"><span>Outline views</span></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+
+
+    
+        <ul class="tree" id="treeView">
+            <li>General<span class="usedFor">Survey</span></li>
+        </ul>
+       <ul class="treeView collapsibleList">
+            <li>Historiographical and methodological
+                <ul>
+                    <li>Historiography
+                    <span class="usedFor-multi">Philosophy of history</span>
+                    <span class="relatedTerm">History: study, understanding and use of</span></li>
+                
+                    <li>Historical methods<span class="usedFor">Historical method</span><span
+                            class="usedFor">Historical methodology</span><span class="usedFor"
+                            >Methodology</span><span class="relatedTerm">History: study,
+                            understanding and use of</span><span class="relatedTerm">Marxism</span>
+                        <ul>
+                            <li>Historians' use of computers<span class="usedFor">Computers,
+                                    historians' use of</span><span class="relatedTerm"
+                                    >Computing</span></li>
+                        
+                            <li>Historians' use of maps<span class="usedFor">Maps, historians' use
+                                    of</span><span class="relatedTerm">Surveying and
+                                    cartography</span></li>
+                        
+                            <li>Oral history</li>
+                        
+                            <li>Prosopography</li>
+                        
+                            <li>Family reconstitution<span class="relatedTerm">Family and
+                                    life-cycle</span><span class="relatedTerm"
+                                >Population</span></li>
+                       
+                            <li>Psychohistory</li>
+                        </ul></li>
+               
+                    <li>Palaeographical and related areas<span class="usedFor">Paleographical and
+                            related areas</span>
+                        <ul>
+                            <li>Diplomatic</li>
+                        
+                            <li>Palaeography<span class="usedFor">Handwriting</span><span
+                                    class="usedFor">Paleography</span><span class="relatedTerm"
+                                    >Orthography and spelling</span>
+                                <ul>
+                                    <li>Runes</li>
+                               
+                                    <li>Shorthand</li>
+                                </ul></li>
+                        
+                            <li>Sigillography<span class="usedFor">Seals</span>
+                                <ul>
+                                    <li>Seal rings</li>
+                                </ul></li>
+                        </ul></li>
+                </ul></li>
+        </ul>
+</div><!-- End #leftCol -->
+
+
+
+<div id="rightCol">
+    <div id="skosConceptMain">
+            <div class="field">
+                <label>Concept</label>:<br />
+                <span>Type your concept here</span><br />
+                <span data-var="concept" class="TBTextField" data-min="2" data-max="100" data-size='20' />
+                <br /><br />
+            </div>
+            <div class="field">
+                <label>URI fragment</label>:<br />
+                <span>Enter the base uri for the ontology</span><br />
+                <span data-var="uriFragment" class="TBTextField" data-min="2" data-max="100" data-size='20' />
+                <br /><br />
+            </div>
+            <div class="field">
+                <label>Identifier</label>:<br />
+                <span>Enter a numeric identifier for this concept</span><br />
+                <span data-var="ident" class="TKAdjustableNumber" data-min="1" data-max="1000" data-size='20'></span>
+                <br /><br />
+            </div>
+
+            <div class="xml">
+            <p>
+                <strong>Generated skos:Concept</strong>
+                <pre>
+    &lt;?xml version="1.0" encoding="UTF-8"?&gt;
+    &lt;skosConcept rdf:about="<strong><span data-var='uriFragmentDisplay' />/concepts/<span data-var='identDisplay' />/<span data-var='uriFragmentForURIDisplay' /></strong>"&gt;
+        &lt;skos:prefLabel&gt;<strong><span data-var='conceptDisplay' /></strong>&lt;/skos:prefLabel&gt;
+    &lt;/skosConcept&gt;
+                </pre>
+            </p>
+            </div>
+        </div><!-- End id='skosConceptMain -->
+
+</div><!-- End #rightCol -->
+
+
+</body>
+</html>
