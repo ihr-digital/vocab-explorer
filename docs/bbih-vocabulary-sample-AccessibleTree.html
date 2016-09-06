@@ -28,7 +28,6 @@
 <div id='controls'>
     <p>Blah blah blah... intro paragraphs go here</p>
 
-    <button type='button' id='toggleSyns'>Toggle synonymns</button>
 </div>
 
 <div id="leftCol">
@@ -39,10 +38,9 @@
             <li><span>
               Actions</span>
               <ul>
-                <li><span>
-                  Creation</span><span>
-                  Creation2</span><span>
-                  Creation3</span>
+                <li><span>Creation</span>
+                <span  class="usedFor">Creation2</span>
+                <span  class="usedFor">Creation3</span>
                   <ul>
                     <li><span>apply()</span></li>
                     <li class="lastChild"><span>applyTo(node)</span></li>
@@ -68,38 +66,40 @@
           </ul>
         </li>
       </ul> -->
+    <p>Click a term in the tree below to load it into the SKOS explorer and view it as SKOS markup.</p>
+    <p>Show and hide the synonymns for terms in the tree below. <button type='button' id='toggleSyns'>Toggle synonymns</button></p>
 
 
 
 <ul class="tree" id="treeView">
             <li>Bibliography of British and Irish History vocabulary explorer <ul>
-                    <li><span class="term">General</span><span class="usedFor">Survey</span>
+                    <li><span class="term">General</span><div><span class="usedFor">Survey</span></div>
                     </li>
                 </ul>
                 <ul>
                     <li><span class="term">Historiographical and methodological</span>
                         <ul>
-                            <li><span class="term">Historiography</span><span class="usedFor-multi"
-                                    >Philosophy of history</span><span class="relatedTerm">History:
-                                    study, understanding and use of</span>
+                            <li><span class="term">Historiography</span><div class="usedFor-multi"
+                                    >Philosophy of history History:
+                                    study, understanding and use of</div>
                             </li>
                         </ul>
                         <ul>
-                            <li><span class="term">Historical methods</span><span class="usedFor"
+                            <li><span class="term">Historical methods</span><div><span class="usedFor"
                                     >Historical method</span><span class="usedFor">Historical
                                     methodology</span><span class="usedFor">Methodology</span><span
                                     class="relatedTerm">History: study, understanding and use
-                                    of</span><span class="relatedTerm">Marxism</span>
+                                    of</span><span class="relatedTerm">Marxism</span></div>
                                 <ul>
-                                    <li><span class="term">Historians' use of computers</span><span
+                                    <li><span class="term">Historians' use of computers</span><div><span
                                             class="usedFor">Computers, historians' use
-                                            of</span><span class="relatedTerm">Computing</span>
+                                            of</span><span class="relatedTerm">Computing</span></div>
                                     </li>
                                 </ul>
                                 <ul>
-                                    <li><span class="term">Historians' use of maps</span><span
+                                    <li><span class="term">Historians' use of maps</span><div><span
                                             class="usedFor">Maps, historians' use of</span><span
-                                            class="relatedTerm">Surveying and cartography</span>
+                                            class="relatedTerm">Surveying and cartography</span></div>
                                     </li>
                                 </ul>
                                 <ul>

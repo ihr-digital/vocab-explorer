@@ -43,13 +43,13 @@ a:visited{
 }
 
 #leftCol {
-  width: auto;
+  width: 49%;
   float: left;
   margin: 0 10px 0 0;
   padding: 2px;
 }
 #rightCol {
-  width: auto;
+  width: 49%;
   float: left;
   margin: 0 0 0 0;
   padding: 2px;
