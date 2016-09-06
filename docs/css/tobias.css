@@ -101,13 +101,19 @@ p{
 li span {
   font-size: 10pt;
 }
-span.relatedTerm {
-  color: grey;
-  font-size: 10pt;
-}
-span.usedFor {
+ul.tree span.relatedTerm {
   color: green;
   font-size: 10pt;
+  border: none;
+  display: inherit;
+  margin-left: 40px;
+}
+ul.tree span.usedFor {
+  color: red;
+  font-size: 10pt;
+  border: none;
+  display: inherit;
+  margin-left: 40px;
 }
 
 
