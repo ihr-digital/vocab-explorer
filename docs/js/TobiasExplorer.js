@@ -11,7 +11,18 @@ window.addEvent('domready', function(){
         $(synSelector).toggle();
     });
 
-
     $('#jsTree1').jstree();
-    $('#jsTree2').jstree();
+
+    // $.jstree.defaults.core.themes.variant = "large";
+    $('#jsTree2').jstree({
+    "types" : {
+      "default" : {
+        "icon" : ""
+      },
+      "usedFor" : {
+        "icon" : "glyphicon glyphicon-ok"
+      }
+    },
+    "plugins" : [ "types" ]
+  });
 });
