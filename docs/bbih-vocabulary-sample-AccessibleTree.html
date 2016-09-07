@@ -3,8 +3,11 @@
     <head>
         <title>Bibliography of British and Irish History vocabulary explorer</title>
 
-        <!-- Jquery JSTree libs @src https://www.jstree.com/ -->
-        
+        <!-- JSTree jquery plugin libs @src https://www.jstree.com/ -->
+        <link rel="stylesheet" href="./js/jstree/themes/default/style.min.css" />
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.1/jquery.min.js"></script>
+        <script type="text/javascript" src="./js/jstree/jstree.min.js"></script>
+
 
         <!-- Tangle and TangleKit libs @src http://worrydream.com/Tangle/ -->
         <script type="text/javascript" src="./js/TangleKit/Tangle.js"></script>
@@ -26,51 +29,28 @@
 
 <div id='controls'>
     <p>Blah blah blah... intro paragraphs go here</p>
-
 </div>
 
 <div id="leftCol">
-   <!--  <ul class="tree" id="treeView">
-        <li><span>
-          Collapsible lists</span>
-          <ul class="collapsibleList">
-            <li><span>
-              Actions</span>
-              <ul>
-                <li><span>Creation</span>
-                <span  class="usedFor">Creation2</span>
-                <span  class="usedFor">Creation3</span>
-                  <ul>
-                    <li><span>apply()</span></li>
-                    <li class="lastChild"><span>applyTo(node)</span></li>
-                  </ul>
-                </li>
-                <li class="lastChild"><span>
-                  Toggling</span>
-                  <ul>
-                    <li><span>Expanding/opening</span></li>
-                    <li class="lastChild"><span>Collapsing/closing</span></li>
-                  </ul>
-                </li>
-              </ul>
-            </li>
-            <li class="lastChild">
-              Uses
-              <ul>
-                <li><span>Directory listings</span></li>
-                <li><span>Tree views</span></li>
-                <li class="lastChild"><span>Outline views</span></li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-      </ul> -->
     <p>Click a term in the tree below to load it into the SKOS explorer and view it as SKOS markup.</p>
     <p>Show and hide the synonymns for terms in the tree below. <button type='button' id='toggleSyns'>Toggle synonymns</button></p>
 
 
 
-<ul class="tree" id="treeView">
+<!-- <div id="jsTree1">
+  <ul>
+    <li>Root node 1
+      <ul>
+        <li>Child node 1</li>
+        <li data-jstree='{"icon":"glyphicon glyphicon-leaf"}'><a href="#">Child node 2</a></li>
+      </ul>
+    </li>
+  </ul>
+</div>
+ -->
+
+<div id="jsTree2">
+<ul>
             <li>Bibliography of British and Irish History vocabulary explorer <ul>
                     <li><span class="term">General</span><div><span class="usedFor">Survey</span></div>
                     </li>
@@ -158,7 +138,7 @@
                 </ul>
             </li>
         </ul>
-
+</div>
 
 
 </div><!-- End #leftCol -->

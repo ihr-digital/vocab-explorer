@@ -95,20 +95,28 @@ p{
   clear: both;
 }
 
+/* SKOC explorer *********************************************************************/
+
+#skosConceptMain {
+  border: 1px solid gray;
+  padding: 10px;
+  border-radius: 5px;
+}
+
 
 /* Synonymn tags *********************************************************************/
 
-li span {
+/*li span {
   font-size: 10pt;
-}
-ul.tree span.relatedTerm {
+}*/
+span.relatedTerm {
   color: green;
   font-size: 10pt;
   border: none;
   display: inherit;
   margin-left: 40px;
 }
-ul.tree span.usedFor {
+span.usedFor {
   color: red;
   font-size: 10pt;
   border: none;
