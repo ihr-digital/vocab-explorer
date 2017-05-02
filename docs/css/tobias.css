@@ -50,7 +50,7 @@ a:visited{
 }
 #rightCol {
   width: 49%;
-  float: left;
+  float: right;
   margin: 0 0 0 0;
   padding: 2px;
 }
@@ -95,14 +95,18 @@ p{
   clear: both;
 }
 
-/* SKOC explorer *********************************************************************/
+/* SKOS explorer *********************************************************************/
 
 #skosConceptMain {
   border: 1px solid gray;
   padding: 10px;
   border-radius: 5px;
+  margin: 10px;
+  position: fixed;
+  top: 170px;
+  /*float: right;*/
+  /*width: 49%;*/
 }
-
 
 /* Synonymn tags *********************************************************************/
 
