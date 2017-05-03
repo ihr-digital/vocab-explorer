@@ -1,6 +1,6 @@
 /*
  * BBIH Vocabulary as a HTML tree view
- * TOBIAS Project, IHR Digital, 2016-07
+ * TOBIAS Project, IHR Digital, 2017-05
  */
 window.addEvent('domready', function(){
     var synSelector = '.usedFor, .relatedTerm, .usedFor-multi';
@@ -20,7 +20,7 @@ window.addEvent('domready', function(){
     $('#tobias-jsTree').jstree({
       'core': {
         'data' : {
-          'url' : 'tobias-jsTree.html',  // Get the <ul> from this location.
+          'url' : 'data/bbih-vocabulary.html',  // Get the <ul> from this location.
         },
       },
       'types' : {
