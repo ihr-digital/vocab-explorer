@@ -35,7 +35,7 @@
 
 <div id="leftCol">
   <p>Click a term in the tree below to load it into the SKOS explorer and view it as SKOS markup.</p>
-  <p>Show and hide the synonymns for terms in the tree below. <button type='button' id='toggleSyns' accesskey='t'>Toggle synonymns (t)</button></p>
+  <p id='skosButtonMain'>Show and hide the synonymns for terms in the tree below. <button type='button' id='toggleSyns' accesskey='t'>Toggle synonymns (t)</button></p>
   <div id="tobias-jsTree"></div>
 </div><!-- End #leftCol -->
 
@@ -62,15 +62,13 @@
       </div>
 
       <div class="xml">
-      <p>
-        <strong>Generated skos:Concept</strong>
-        <pre>
+      <p><strong>Generated skos:Concept</strong></p>
+      <p><pre>
   &lt;?xml version="1.0" encoding="UTF-8"?&gt;
   &lt;skosConcept rdf:about="<strong><span data-var='uriFragmentDisplay' />/concepts/<span data-var='identDisplay' />/<span data-var='uriFragmentForURIDisplay' /></strong>"&gt;
     &lt;skos:prefLabel&gt;<strong><span data-var='conceptDisplay' /></strong>&lt;/skos:prefLabel&gt;
   &lt;/skosConcept&gt;
-        </pre>
-      </p>
+        </pre></p>
       </div>
     </div><!-- End id='skosConceptMain -->
 </div><!-- End #rightCol -->

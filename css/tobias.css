@@ -66,13 +66,14 @@ a:visited{
   border-radius: 5px;
   margin: 10px;
   position: relative;
-  /*top: 170px;*/
+  overflow: hidden;
   z-index: 100;
 }
 
 .sticky {
   position: fixed !important;
   top: 0;
+  background: white;
 }
 
 /* Type and headings ****************************************************************/

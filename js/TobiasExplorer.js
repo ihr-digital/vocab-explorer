@@ -9,22 +9,19 @@ var synVisible = false;
 
 window.addEvent('domready', function(){
     // Initialise the tree and setup handlers
-    // $.jstree.defaults.core.themes.variant = "large";
     $('#tobias-jsTree')
-    // Listen for events
     // As nodes are opened, obey the synonymn visibility state
+    // for the entire tree
     .on('before_open.jstree', function (e, data) {
-      // console.log(data);
       if (synVisible == false) {
         $(this).find(synSelector).hide();
       } else {
         $(this).find(synSelector).show();
       }
     })
-    // When nodes are selected, populate the SKOSConceptMain code box
+    // When nodes are selected, trigger event of the same name on #SKOSConceptMain
     .on('select_node.jstree', function (e, data) {
-      console.log('select node', $(data.selected));
-      // console.log(data);
+      $('#skosConceptMain').trigger('select_node.jstree', [ data ]);
     })
     // Create/init the tree
     .jstree({
@@ -41,28 +38,39 @@ window.addEvent('domready', function(){
           'icon' : 'glyphicon glyphicon-ok',
         },
       },
-      // Customise some types of nodes for icons
-      // Keep the opened/selected state of the tree
+      // Customise some types of nodes for icons and keep opened state
       'plugins' : [ 'types', 'state' ],
     });
 
-    // Keep the SKOS markup box on screen as you scroll down.
+
+    // Bind jstree event of the same name. Events are triggered from
+    // the tree and we get the same event/data params.
+    $('#skosConceptMain').on('select_node.jstree', function (e, data) {
+      console.log('SKOS select node');
+      console.log(data.node);
+      $item = data;
+      // $('[data-var="concept"]').val();
+    });
+
+
+    // Keep the SKOS markup box and toggle button on screen as you scroll down.
     var $window = $(window),
-        $sticky = $('#skosConceptMain'),
-        stickyTop = $sticky.offset().top;
+        $stickyConcept = $('#skosConceptMain'),
+        stickyConceptTop = $stickyConcept.offset().top,
+        $stickyButton = $('#skosButtonMain'),
+        stickyButtonTop = $stickyButton.offset().top;
     $window.scroll(function() {
-      $sticky.toggleClass('sticky', $window.scrollTop() > stickyTop);
+      $stickyConcept.toggleClass('sticky', $window.scrollTop() > stickyConceptTop);
+      $stickyButton.toggleClass('sticky', $window.scrollTop() > stickyButtonTop);
     });
 
     // Setup toggle synonymns function for button click and keypress
     $('#toggleSyns').click(function() {
-      console.log(synVisible);
       $(synSelector).toggle();
       synVisible = !synVisible;
     });
     $(document).keypress(function(event) {
       if (event.keyCode == 116)  { // Key press 't'
-        console.log(synVisible);
         $(synSelector).toggle();
         synVisible = !synVisible;
       }
