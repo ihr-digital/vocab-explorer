@@ -20,7 +20,7 @@ window.addEvent('domready', function(){
     $('#tobias-jsTree').jstree({
       'core': {
         'data' : {
-          'url' : 'data/bbih-vocabulary-sample.html',  // Get the <ul> from this location.
+          'url' : 'data/bbih-vocabulary-sample.html',  // Get the tree list from here.
         },
       },
       'types' : {
@@ -31,6 +31,9 @@ window.addEvent('domready', function(){
           'icon' : 'glyphicon glyphicon-ok',
         },
       },
-      'plugins' : [ 'types' ],
+      // Customise some types of nodes for icons
+      // Keep the opened/selected state of the tree
+      // Select the whole row
+      'plugins' : [ 'types', 'state', 'wholerow' ],
     });
 });

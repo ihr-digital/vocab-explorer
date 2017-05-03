@@ -13,8 +13,7 @@ body {
   font-family: "Arial";
   font-size: 0.8em;
   margin-top: 0px;
-  margin-bottom: 30px;
-  position: relative;
+  /*position: relative;*/
   min-height: 100%;
   line-height: 1.5;
   padding: 10px;
@@ -45,16 +44,31 @@ a:visited{
 #leftCol {
   width: 49%;
   float: left;
-  margin: 0 10px 0 0;
+  margin-left: 10px;
+  margin-bottom: 30px;
   padding: 2px;
 }
 #rightCol {
   width: 49%;
-  float: right;
   margin: 0 0 0 0;
   padding: 2px;
 }
 
+
+/* SKOS explorer *********************************************************************/
+
+#skosConceptMain {
+  background: white;
+  border: 1px solid gray;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 10px;
+  position: fixed;
+  top: 170px;
+  width: 40%;
+  z-index: 100;
+  right: 1%;
+}
 
 /* Type and headings ****************************************************************/
 
@@ -95,18 +109,7 @@ p{
   clear: both;
 }
 
-/* SKOS explorer *********************************************************************/
 
-#skosConceptMain {
-  border: 1px solid gray;
-  padding: 10px;
-  border-radius: 5px;
-  margin: 10px;
-  position: fixed;
-  top: 170px;
-  /*float: right;*/
-  /*width: 49%;*/
-}
 
 /* Synonymn tags *********************************************************************/
 
@@ -117,22 +120,23 @@ span.relatedTerm {
   color: green;
   font-size: 10pt;
   border: none;
-  display: inherit;
-  margin-left: 40px;
+  /*display: inherit;*/
+  /*margin-left: 40px;*/
 }
 span.usedFor {
   color: red;
   font-size: 10pt;
   border: none;
-  display: inherit;
-  margin-left: 40px;
+  /*display: inherit;*/
+  /*float: left;*/
+  /*margin-left: 40px;*/
 }
 
 
 /* Mashalla tree *********************************************************************/
 /* Mootools AccessibleTree @src https://github.com/mashalla/tree/ */
 
-ul {
+/*ul {
   padding: 0 0 0 15px;
 }
 ul.tree {
@@ -225,66 +229,5 @@ h1 span {
 }
 .blue {
   color: #1f52b0;
-}
-
-
-/* treeView *********************************************************************
-CSS and images sourced from: http://code.stephenmorley.org/javascript/collapsible-lists/
-http://creativecommons.org/publicdomain/zero/1.0/legalcode
-*/
-
-/*ul{
-  margin  : 0 1.5em 1.5em 2.5em;
-  padding : 0;
-}
-
-li{
-  margin  : 0;
-  padding : 0;
-}
-
-
-.treeView{
-	-moz-user-select:none;
-	position:relative;
-}
-.treeView ul{
-	margin:0 0 0 -1.5em;
-	padding:0 0 0 1.5em;
-}
-.treeView ul ul{
-	background:url('../img/list-item-contents.png') repeat-y left;
-}
-.treeView li{
-	margin:0;
-	padding:0;
-	background:url('../img/list-item-root.png') no-repeat top left;
-	list-style-position:inside;
-	list-style-image:url('../img/button.png');
-	cursor:auto;
-}
-.treeView li li{
-	background-image:url('../img/list-item.png');
-	padding-left:1.5em;
-}
-.treeView li.collapsibleListOpen{
-	background-image:url('../img/list-item-open.png');
-}
-.treeView li.collapsibleListOpen{
-	list-style-image:url('../img/button-open.png');
-	cursor:pointer;
-}
-.treeView li.collapsibleListOpen.lastChild{
-	background-image:url('../img/list-item-last-open.png');
-}
-.treeView li.collapsibleListClosed{
-	list-style-image:url('../img/button-closed.png');
-	cursor:pointer;
-}
-.treeView li.lastChild > ul{
-	background-image:none;
-}
-.treeView li.lastChild{
-	background-image:url('../img/list-item-last.png');
 }
 */
