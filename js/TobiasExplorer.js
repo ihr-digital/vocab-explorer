@@ -20,7 +20,7 @@ window.addEvent('domready', function(){
     $('#tobias-jsTree').jstree({
       'core': {
         'data' : {
-          'url' : 'data/bbih-vocabulary.html',  // Get the <ul> from this location.
+          'url' : 'data/bbih-vocabulary-sample.html',  // Get the <ul> from this location.
         },
       },
       'types' : {
