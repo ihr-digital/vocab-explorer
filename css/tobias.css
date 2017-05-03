@@ -116,26 +116,37 @@ p{
 }
 
 
+/* Multiline jstree items ***************************/
+.jstree-anchor-multiline {
+  height:auto !important;
+  white-space:normal !important;
+}
+
 
 /* Synonymn tags *********************************************************************/
-
-/*li span {
-  font-size: 10pt;
-}*/
-span.relatedTerm {
-  color: green;
-  font-size: 10pt;
-  border: none;
-  /*display: inherit;*/
-  /*margin-left: 40px;*/
+span.term {
+  padding-right: 10px;
 }
+span.relatedTerm,
 span.usedFor {
-  color: red;
-  font-size: 10pt;
+  color: grey;
   border: none;
-  /*display: inherit;*/
-  /*float: left;*/
-  /*margin-left: 40px;*/
+  font-size: 0.9em;
+  font-style: italic;
+}
+span.relatedTerm:after,
+span.usedFor:after {
+  content: ',';
+  margin-right: 5px;
+}
+span:last-child:after {
+  content: '' !important;
+}
+span.relatedTerm {
+  color: blue;
+}
+span.relatedTerm:hover {
+  text-decoration: underline;
 }
 
 

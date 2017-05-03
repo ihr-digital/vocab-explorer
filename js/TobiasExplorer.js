@@ -18,6 +18,11 @@ window.addEvent('domready', function(){
       } else {
         $(this).find(synSelector).show();
       }
+
+      // Add special multiline class to items with synonymns
+      // .jstree-anchor-multiline
+      // DO THIS TOMORROW...
+
     })
     // When nodes are selected, trigger event of the same name on #SKOSConceptMain
     .on('select_node.jstree', function (e, data) {
