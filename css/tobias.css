@@ -50,8 +50,10 @@ a:visited{
 }
 #rightCol {
   width: 49%;
+  float: right;
   margin: 0 0 0 0;
   padding: 2px;
+  z-index: 100;
 }
 
 
@@ -63,11 +65,14 @@ a:visited{
   padding: 10px;
   border-radius: 5px;
   margin: 10px;
-  position: fixed;
-  top: 170px;
-  width: 40%;
+  position: relative;
+  /*top: 170px;*/
   z-index: 100;
-  right: 1%;
+}
+
+.sticky {
+  position: fixed !important;
+  top: 0;
 }
 
 /* Type and headings ****************************************************************/
