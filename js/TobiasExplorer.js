@@ -70,7 +70,8 @@ window.addEvent('domready', function(){
       synVisible = !synVisible;
     });
     $(document).keypress(function(event) {
-      if (event.keyCode == 116)  { // Key press 't'
+      console.log(event);
+      if (event.charCode == 116)  { // Key press 't'
         $(synSelector).toggle();
         synVisible = !synVisible;
       }
