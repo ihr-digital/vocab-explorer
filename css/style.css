@@ -210,8 +210,23 @@ footer { width: 35%; float: left; position: fixed; bottom: 50px; -webkit-font-sm
 
 
 
+/* Tangle *********************************************************************/
+/* Src: http://worrydream.com/Tangle/ */
+
+.field {
+  float: left;
+  margin-right: 10px;
+}
+.xml {
+  clear: both;
+}
+
 /* Multiline jstree items ***************************/
 .jstree-anchor-multiline {
+  height:auto !important;
+  white-space:normal !important;
+}
+.jstree-anchor {
   height:auto !important;
   white-space:normal !important;
 }
@@ -239,5 +254,5 @@ span.relatedTerm {
   color: blue;
 }
 span.relatedTerm:hover {
-  text-decoration: underline;
+  text-decoration: underline; 
 }
