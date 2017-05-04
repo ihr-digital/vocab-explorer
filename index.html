@@ -35,7 +35,7 @@
 
 <div id="leftCol">
   <p>Click a term in the tree below to load it into the SKOS explorer and view it as SKOS markup.</p>
-  <p id='skosButtonMain'>Show and hide the synonymns for terms in the tree below. <button type='button' id='toggleSyns' accesskey='t'>Toggle synonymns (t)</button></p>
+  <p id='skosButtonMain'>Show and hide the synonymns for terms in the tree below. <button type='button' id='toggleSyns' accesskey='t'>Toggle synonymns</button></p>
   <div id="tobias-jsTree"></div>
 </div><!-- End #leftCol -->
 
@@ -45,19 +45,19 @@
       <div class="field">
         <label>Concept</label>:<br />
         <span>Type your concept here</span><br />
-        <span data-var="concept" class="TBTextField" data-min="2" data-max="100" data-size='20' />
+        <span data-var="concept" class="TBTextField" id="concept" data-min="2" data-max="100" data-size='20' />
         <br /><br />
       </div>
       <div class="field">
         <label>URI fragment</label>:<br />
         <span>Enter the base uri for the ontology</span><br />
-        <span data-var="uriFragment" class="TBTextField" data-min="2" data-max="100" data-size='20' />
+        <span data-var="uriFragment" class="TBTextField" id="uriFragment" data-min="2" data-max="100" data-size='20' />
         <br /><br />
       </div>
       <div class="field">
         <label>Identifier</label>:<br />
         <span>Enter a numeric identifier for this concept</span><br />
-        <span data-var="ident" class="TKAdjustableNumber" data-min="1" data-max="1000" data-size='20'></span>
+        <span data-var="ident" class="TKAdjustableNumber" id="ident" data-min="1" data-max="1000" data-size='20'></span>
         <br /><br />
       </div>
 

@@ -1,6 +1,9 @@
 //
 // Tobias Tangle classes
 //
+// Keep global page reference to the tangle object
+var skosTangle = null;
+
 (function () {
 
 //----------------------------------------------------------
@@ -63,6 +66,7 @@ function setUpTangle () {
             this.identDisplay = this.ident;
         }
     });
+    return tangle;
 }
 
 
@@ -74,7 +78,7 @@ function cleanText(txt) {
 }
 
 
-// Initialise Tobias Tangle
+// Initialise and keep reference to the Tobias SKOS Tangle
 window.addEvent('domready', function(){
-    setUpTangle();
+    skosTangle = setUpTangle();
 });

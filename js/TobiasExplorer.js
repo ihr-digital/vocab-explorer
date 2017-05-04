@@ -34,6 +34,7 @@ window.addEvent('domready', function(){
         'data' : {
           'url' : 'data/bbih-vocabulary-sample.html',  // Get the tree list from here.
         },
+        'multiple' : false,  // Single selections only.
       },
       'types' : {
         'default' : {
@@ -51,10 +52,14 @@ window.addEvent('domready', function(){
     // Bind jstree event of the same name. Events are triggered from
     // the tree and we get the same event/data params.
     $('#skosConceptMain').on('select_node.jstree', function (e, data) {
-      console.log('SKOS select node');
-      console.log(data.node);
-      $item = data;
-      // $('[data-var="concept"]').val();
+      $selectedNode = $(data.instance.get_node(data.selected, true));
+
+      // Select the values out of the node and put into the tangle object.
+      skosTangle.setValue('concept', $selectedNode.find('span.term:first').text());
+
+      console.log($selectedNode.html());
+      
+
     });
 
 
@@ -69,17 +74,19 @@ window.addEvent('domready', function(){
       $stickyButton.toggleClass('sticky', $window.scrollTop() > stickyButtonTop);
     });
 
-    // Setup toggle synonymns function for button click and keypress
+    // Setup toggle synonymns function for button click
     $('#toggleSyns').click(function() {
       $(synSelector).toggle();
       synVisible = !synVisible;
     });
-    $(document).keypress(function(event) {
-      console.log(event);
-      if (event.charCode == 116)  { // Key press 't'
-        $(synSelector).toggle();
-        synVisible = !synVisible;
-      }
-    });
+    // Event bubbling when typing into the tangle causes the syns to appear.
+    // Also, typing 't' causes tree node selection behaviour, so disabling keypress for now.
+    // $(document).keypress(function(event) {
+    //   console.log(event);
+    //   if (event.charCode == 116)  { // Key press 't'
+    //     $(synSelector).toggle();
+    //     synVisible = !synVisible;
+    //   }
+    // });
 
 });
