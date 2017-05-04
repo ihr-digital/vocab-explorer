@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<!-- saved from url=(0039)https://pages-themes.github.io/minimal/ -->
+<html lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Bibliography of British and Irish History vocabulary explorer</title>
+
+    <link rel="stylesheet" href="./css/minimal-style.css">
+    <meta name="viewport" content="width=device-width">
+
+    <!-- JSTree jquery plugin libs @src https://www.jstree.com/ -->
+    <link rel="stylesheet" href="./js/jstree/themes/default/style.min.css" />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.1/jquery.min.js"></script>
+    <script type="text/javascript" src="./js/jstree/jstree.min.js"></script>
+
+
+    <!-- Tangle and TangleKit libs @src http://worrydream.com/Tangle/ -->
+    <script type="text/javascript" src="./js/TangleKit/Tangle.js"></script>
+    <link rel="stylesheet" href="./js/TangleKit/TangleKit.css" type="text/css">
+    <script type="text/javascript" src="./js/TangleKit/mootools.js"></script>
+    <script type="text/javascript" src="./js/TangleKit/sprintf.js"></script>
+    <script type="text/javascript" src="./js/TangleKit/BVTouchable.js"></script>
+    <script type="text/javascript" src="./js/TangleKit/TangleKit.js"></script>
+
+    <!-- Tobias Explorer - config and setup scripts -->
+    <script type="text/javascript" src="./js/TobiasTangle.js"></script>
+    <script type="text/javascript" src="./js/TobiasExplorer.js"></script>
+    <!-- <link href="./css/tobias.css" type="text/css" rel="stylesheet" /> -->
+
+
+
+
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Vocabulary and SKOS explorer</h1>
+
+        <p id='skosButtonMain'>Show and hide the synonymns for terms in the tree. <button type='button' id='toggleSyns' accesskey='t'>Toggle synonymns</button></p>
+
+        <div class="language-xml highlighter-rouge"><pre class="highlight"><code><span class="c1">// Javascript code with syntax highlighting.</span>
+        <span class="kd">var</span> <span class="nx">fun</span> <span class="o">=</span> <span class="kd">function</span> <span class="nx">lang</span><span class="p">(</span><span class="nx">l</span><span class="p">)</span> <span class="p">{</span>
+          <span class="nx">dateformat</span><span class="p">.</span><span class="nx">i18n</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'./lang/'</span> <span class="o">+</span> <span class="nx">l</span><span class="p">)</span>
+          <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+        <span class="p">}</span>
+        </code></pre>
+        </div>
+
+
+<div id="skosConceptMain">
+      <h4>Generated skos:Concept</h4>
+      <div class="field">
+        <label>Concept name:</label>:<br />
+        <span data-var="concept" class="TBTextField" id="concept" data-min="2" data-max="100" data-size='20' />
+        <br />
+      </div>
+      <div class="field">
+        <label>Ontology base uri:</label>:<br />
+        <span data-var="uriFragment" class="TBTextField" id="uriFragment" data-min="2" data-max="100" data-size='20' />
+        <br />
+      </div>
+      <div class="field">
+        <label>Identifier</label>:<br />
+        <span data-var="ident" class="TKAdjustableNumber" id="ident" data-min="1" data-max="1000" data-size='20'></span>
+        <br />
+      </div>
+
+      <pre class="xml">
+        <code>
+  &lt;?xml version="1.0" encoding="UTF-8"?&gt;
+  &lt;skosConcept rdf:about="<strong><span data-var='uriFragmentDisplay' />/concepts/<span data-var='identDisplay' />/<span data-var='uriFragmentForURIDisplay' /></strong>"&gt;
+    &lt;skos:prefLabel&gt;<strong><span data-var='conceptDisplay' /></strong>&lt;/skos:prefLabel&gt;
+  &lt;/skosConcept&gt;
+        </code>
+      </pre>
+    </div><!-- End id='skosConceptMain -->
+
+
+
+      </header>
+      <section>
+
+
+      <h2></a>Bibliography of British and Irish History vocabulary</h2>
+
+      <p>Click a term in the tree below to view it as SKOS markup.</p>
+
+      <p>This is a normal paragraph following a header. GitHub is a code hosting platform for version control and collaboration. It lets you and others work together on projects from anywhere.</p>
+
+      <div id="tobias-jsTree"></div>
+
+    </section>
+    <footer>
+      <p class="view"><a href="https://github.com/ihr-webmaster/vocab-explorer">View the Project on GitHub <small></small></a></p>
+      <p><small>Hosted on GitHub Pages — <a href="https://github.com/pages-themes/minimal">Minimal theme</a></small></p>
+    </footer>
+    <script src="./Minimal theme by pages-themes_files/scale.fix.js.download"></script>
+</body></html>
