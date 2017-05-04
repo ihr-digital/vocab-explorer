@@ -63,15 +63,18 @@ window.addEvent('domready', function(){
     });
 
 
-    // Keep the SKOS markup box and toggle button on screen as you scroll down.
-    var $window = $(window),
-        $stickyConcept = $('#skosConceptMain'),
-        stickyConceptTop = $stickyConcept.offset().top,
-        $stickyButton = $('#skosButtonMain'),
-        stickyButtonTop = $stickyButton.offset().top;
-    $window.scroll(function() {
-      $stickyConcept.toggleClass('sticky', $window.scrollTop() > stickyConceptTop);
-      $stickyButton.toggleClass('sticky', $window.scrollTop() > stickyButtonTop);
+    // Resize the SKOS code box when mouse hovers over it.
+    codeBoxDefaultWidth = $('#skosConceptMain').width();
+    $('#skosConceptMain').on('mouseenter', function(){
+      w = $(this).find('code').width() - $(this).width() + 35;
+      $(this).animate({ width: "+=" + w });
+    })
+    .on('mouseleave', function(){
+      $(this).animate({ width: codeBoxDefaultWidth });
+    })
+    // Bind click/select all code behaviour for easy copy/paste
+    .on('click', function() {
+      $(this).find('code');
     });
 
     // Setup toggle synonymns function for button click
@@ -88,5 +91,8 @@ window.addEvent('domready', function(){
     //     synVisible = !synVisible;
     //   }
     // });
+
+    // 
+
 
 });
