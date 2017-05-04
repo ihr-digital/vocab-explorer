@@ -57,24 +57,18 @@ window.addEvent('domready', function(){
       // Select the values out of the node and put into the tangle object.
       skosTangle.setValue('concept', $selectedNode.find('span.term:first').text());
 
-      console.log($selectedNode.html());
-      
-
+      // console.log($selectedNode.html());
     });
 
 
     // Resize the SKOS code box when mouse hovers over it.
-    codeBoxDefaultWidth = $('#skosConceptMain').width();
-    $('#skosConceptMain').on('mouseenter', function(){
-      w = $(this).find('code').width() - $(this).width() + 35;
-      $(this).animate({ width: "+=" + w });
+    codeBoxDefaultWidth = $('#skosConceptMain pre.xml').width();
+    $('#skosConceptMain pre.xml').on('mouseenter', function(){
+      w = $(this).find('code').width() + 15;
+      $(this).animate({ width: w });
     })
     .on('mouseleave', function(){
       $(this).animate({ width: codeBoxDefaultWidth });
-    })
-    // Bind click/select all code behaviour for easy copy/paste
-    .on('click', function() {
-      $(this).find('code');
     });
 
     // Setup toggle synonymns function for button click
@@ -82,17 +76,5 @@ window.addEvent('domready', function(){
       $(synSelector).toggle();
       synVisible = !synVisible;
     });
-    // Event bubbling when typing into the tangle causes the syns to appear.
-    // Also, typing 't' causes tree node selection behaviour, so disabling keypress for now.
-    // $(document).keypress(function(event) {
-    //   console.log(event);
-    //   if (event.charCode == 116)  { // Key press 't'
-    //     $(synSelector).toggle();
-    //     synVisible = !synVisible;
-    //   }
-    // });
-
-    // 
-
 
 });
