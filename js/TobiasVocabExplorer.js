@@ -5,7 +5,7 @@
 
 // The synonymn span selector and state variable for visibility
 var synSelector = '.usedFor, .relatedTerm, .usedFor-multi, .usedFor-multi-factor';
-var synVisible = false;
+var synVisible = true;
 
 $( document ).ready(function(){
     // Initialise the tree and setup handlers
@@ -13,9 +13,9 @@ $( document ).ready(function(){
     // As nodes are opened, obey global synonymn visibility state
     .on('before_open.jstree', function (e, data) {
       if (synVisible == false) {
-        // $(this).find(synSelector).hide();
+        $(this).find(synSelector).hide();
       } else {
-        // $(this).find(synSelector).show();
+        $(this).find(synSelector).show();
       }
     })
     .on('select_node.jstree', function (e, data) {
