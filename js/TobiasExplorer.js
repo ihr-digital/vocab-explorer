@@ -1,5 +1,5 @@
-/*
- * BBIH Vocabulary as a HTML tree view
+/**
+ * BBIH Vocabulary as a HTML jsTree view
  * TOBIAS Project, IHR Digital, 2017-05
  */
 
@@ -10,19 +10,20 @@ var synVisible = false;
 window.addEvent('domready', function(){
     // Initialise the tree and setup handlers
     $('#tobias-jsTree')
-    // As nodes are opened, obey the synonymn visibility state
-    // for the entire tree
+    // As nodes are opened, obey global synonymn visibility state
     .on('before_open.jstree', function (e, data) {
       if (synVisible == false) {
         $(this).find(synSelector).hide();
       } else {
         $(this).find(synSelector).show();
       }
-
+    })
+    .on('ready.jstree', function(e, data) {
       // Add special multiline class to items with synonymns
       // .jstree-anchor-multiline
       // DO THIS TOMORROW...
-
+      console.log('ready');
+      console.log($('tobias-jsTree span.term').length);
     })
     // When nodes are selected, trigger event of the same name on #SKOSConceptMain
     .on('select_node.jstree', function (e, data) {
@@ -32,9 +33,14 @@ window.addEvent('domready', function(){
     .jstree({
       'core': {
         'data' : {
-          'url' : 'data/bbih-vocabulary-sample.html',  // Get the tree list from here.
+          'url' : 'data/bbih-vocabulary-sample.html',  // Get the tree data from here.
         },
-        'multiple' : false,  // Single selections only.
+        'multiple' : false,  // Single selection only.
+        'themes': {
+          'name': 'proton',  // Awesome oss theme!
+          'responsive': true,
+          'icons' : false,
+        },
       },
       'types' : {
         'default' : {
@@ -44,7 +50,7 @@ window.addEvent('domready', function(){
           'icon' : 'glyphicon glyphicon-ok',
         },
       },
-      // Customise some types of nodes for icons and keep opened state
+      // Customise some node types and persist opened state
       'plugins' : [ 'types', 'state' ],
     });
 
@@ -77,4 +83,8 @@ window.addEvent('domready', function(){
       synVisible = !synVisible;
     });
 
+    // Initialise the highlight.js code block
+    $('pre code').each(function(i, block) {
+      hljs.highlightBlock(block);
+    });
 });

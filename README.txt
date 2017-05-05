@@ -4,7 +4,8 @@ TOBIAS Project
 IHR Digital
 2016-07
 
-This repository contains the BBIH Vocabulary transformation scripts, which convert the
-source data structures into SKOS and a HTML list.
+The SKOS explorer is all strung together from a lot of little opensource bits and pieces!
 
-The /docs subdirectory contains the explorer web pages, which are to be published on githubpages
+The `/data` directory contains the BBIH Vocabulary data and some transformation scripts to convert the source data into SKOS and a HTML list. The HTML list is dynamically loaded into the Vocabulary and SKOS explorer webpage and rendered as a usable/navigable tree using the excellent [JSTree jquery plugin](https://www.jstree.com/). The SKOS explorer page is themed by a slightly customised css taken from the Github pages [minimal theme](https://github.com/pages-themes/minimal) and the JSTree is themed using the [jsTree Bootstrap Theme](https://github.com/orangehill/jstree-bootstrap-theme). The Generated skos:Concept text fields and code block are dynamically updated using Brett Victor's [Tangle.js](http://worrydream.com/Tangle/) and the RDF/XML syntax highlighting is applied using [highlight.js](https://highlightjs.org).
+
+
