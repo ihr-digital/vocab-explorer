@@ -12,76 +12,21 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="./js/jstree/jstree.min.js"></script>
 
-    <!-- Tangle and TangleKit libs @src http://worrydream.com/Tangle/ -->
-    <script type="text/javascript" src="./js/TangleKit/Tangle.js"></script>
-    <link rel="stylesheet" href="./js/TangleKit/TangleKit.css" type="text/css">
-    <script type="text/javascript" src="./js/TangleKit/mootools.js"></script>
-    <script type="text/javascript" src="./js/TangleKit/sprintf.js"></script>
-    <script type="text/javascript" src="./js/TangleKit/BVTouchable.js"></script>
-    <script type="text/javascript" src="./js/TangleKit/TangleKit.js"></script>
-
-    <!-- Syntax highlighter - https://highlightjs.org -->
-<!--     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css" integrity="sha256-Zd1icfZ72UBmsId/mUcagrmN7IN5Qkrvh75ICHIQVTk=" crossorigin="anonymous" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js" integrity="sha256-+bhVTaRmJ/c07eV80nU8gD2cBBF0rYkf1txqXlrbvb0=" crossorigin="anonymous"></script>
- -->
-
     <!-- Tobias Explorer - css and js setup scripts -->
     <link rel="stylesheet" href="./css/style.css">
-    <script type="text/javascript" src="./js/TobiasTangle.js"></script>
-    <script type="text/javascript" src="./js/TobiasExplorer.js"></script>
+    <script type="text/javascript" src="./js/TobiasVocabExplorer.js"></script>
 
   </head>
   <body>
     <div class="wrapper">
-      <header>
-        <h1>Vocabulary and SKOS explorer</h1>
-
+        <h1>Bibliography of British and Irish History Vocabulary Explorer</h1>
         <p id='skosButtonMain'>Show and hide the synonymns for terms in the tree. <button type='button' id='toggleSyns' accesskey='t'>Toggle synonymns</button></p>
 
-         <div id="skosConceptMain">
-          <h4>Generated skos:Concept</h4>
-          <div class="field">
-            <label>Concept name</label>:<br />
-            <span data-var="concept" class="TBTextField" id="concept" data-min="2" data-max="100" data-size='20' />
-            <br />
-          </div>
-          <div class="field">
-            <label>Ontology base uri</label>:<br />
-            <span data-var="uriFragment" class="TBTextField" id="uriFragment" data-min="2" data-max="100" data-size='20' />
-            <br />
-          </div>
-          <div class="field">
-            <label>Identifier</label>:
-            <span data-var="ident" class="TKAdjustableNumber" id="ident" data-min="1" data-max="1000" data-size='20'></span>
-          </div>
-          <br /><br />
-
-<pre><code class="xml hljs"><span class="hljs-meta"><span class="php"><span class="hljs-meta">&lt;?</span>xml version=<span class="hljs-string">"1.0"</span> encoding=<span class="hljs-string">"UTF-8"</span><span class="hljs-meta">?&gt;</span></span></span>
-<span>&lt;skosConcept
-  <span>rdf:about="<strong><span class="hljs-string"><span data-var="uriFragmentDisplay"></span>/concepts/<span data-var="identDisplay"></span>/<span data-var="uriFragmentForURIDisplay"></span></span></strong><span>"&gt;</span>
-  <span>&lt;skos:prefLabel&gt;</span>
-    <strong><span data-var="conceptDisplay" /></strong>
-  <span>&lt;/skos:prefLabel&gt;</span>
-<span>&lt;/skosConcept&gt;</span></code>
-          </pre>
-
-        </div><!-- End id='skosConceptMain -->
-
-      </header>
-      <section>
-
-
-      <h2></a>Bibliography of British and Irish History vocabulary</h2>
-
-      <p>Click a term in the tree below to view it as SKOS markup.</p>
-
-      <p>This is a normal paragraph following a header. GitHub is a code hosting platform for version control and collaboration. It lets you and others work together on projects from anywhere.</p>
 
       <div id="tobias-jsTree"></div>
 
-    </section>
-    <footer>
+      <p>&nbsp;</p>
       <p class="view"><a href="https://github.com/ihr-webmaster/vocab-explorer">View the Project on GitHub <small></small></a></p>
       <p><small>Hosted on GitHub Pages — <a href="https://github.com/pages-themes/minimal">Minimal theme</a></small></p>
-    </footer>
+    
 </body></html>

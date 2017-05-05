@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<!-- saved from url=(0039)https://pages-themes.github.io/minimal/ -->
+<html lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Bibliography of British and Irish History Skos Explorer</title>
+
+    <meta name="viewport" content="width=device-width">
+
+    <!-- JSTree jquery plugin libs @src https://www.jstree.com/ -->
+    <link rel="stylesheet" href="./js/jstree/themes/proton/style.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="./js/jstree/jstree.min.js"></script>
+
+    <!-- Tangle and TangleKit libs @src http://worrydream.com/Tangle/ -->
+    <script type="text/javascript" src="./js/TangleKit/Tangle.js"></script>
+    <link rel="stylesheet" href="./js/TangleKit/TangleKit.css" type="text/css">
+    <script type="text/javascript" src="./js/TangleKit/mootools.js"></script>
+    <script type="text/javascript" src="./js/TangleKit/sprintf.js"></script>
+    <script type="text/javascript" src="./js/TangleKit/BVTouchable.js"></script>
+    <script type="text/javascript" src="./js/TangleKit/TangleKit.js"></script>
+
+    <!-- Tobias Explorer - css and js setup scripts -->
+    <link rel="stylesheet" href="./css/style.css">
+    <script type="text/javascript" src="./js/TobiasSkosExplorer.js"></script>
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Bibliography of British and Irish History Skos Explorer</h1>
+
+         <div id="skosConceptMain">
+          <h4>Generated skos:Concept</h4>
+          <div class="field">
+            <label>Concept name</label>:<br />
+            <span data-var="concept" class="TBTextField" id="concept" data-min="2" data-max="100" data-size='20' />
+            <br />
+          </div>
+          <div class="field">
+            <label>Ontology base uri</label>:<br />
+            <span data-var="uriFragment" class="TBTextField" id="uriFragment" data-min="2" data-max="100" data-size='20' />
+            <br />
+          </div>
+          <div class="field">
+            <label>Identifier</label>:
+            <span data-var="ident" class="TKAdjustableNumber" id="ident" data-min="1" data-max="1000" data-size='20'></span>
+          </div>
+          <br /><br />
+
+<pre><code class="xml hljs"><span class="hljs-meta"><span class="php"><span class="hljs-meta">&lt;?</span>xml version=<span class="hljs-string">"1.0"</span> encoding=<span class="hljs-string">"UTF-8"</span><span class="hljs-meta">?&gt;</span></span></span>
+<span>&lt;skosConcept
+  <span>rdf:about="<strong><span class="hljs-string"><span data-var="uriFragmentDisplay"></span>/concepts/<span data-var="identDisplay"></span>/<span data-var="uriFragmentForURIDisplay"></span></span></strong><span>"&gt;</span>
+  <span>&lt;skos:prefLabel&gt;</span>
+    <strong><span data-var="conceptDisplay" /></strong>
+  <span>&lt;/skos:prefLabel&gt;</span>
+<span>&lt;/skosConcept&gt;</span></code>
+          </pre>
+
+        </div><!-- End id='skosConceptMain -->
+
+      </header>
+      <section>
+
+      <p>Click a term in the tree below to view it as SKOS markup.</p>
+
+      <div id="tobias-jsTree"></div>
+
+    </section>
+    <footer>
+      <p class="view"><a href="https://github.com/ihr-webmaster/vocab-explorer">View the Project on GitHub <small></small></a></p>
+      <p><small>Hosted on GitHub Pages — <a href="https://github.com/pages-themes/minimal">Minimal theme</a></small></p>
+    </footer>
+</body></html>
