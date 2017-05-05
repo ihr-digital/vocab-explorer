@@ -96,31 +96,44 @@ footer { width: 40%; float: left; position: fixed; bottom: 50px; -webkit-font-sm
 }
 
 /* Multiline jstree items ***************************/
-/*.jstree-anchor-multiline {
-  height:auto !important;
-  white-space:normal !important;
+span.firstSynonymn {
+  padding-left: 10px;
 }
 .jstree-anchor {
   height:auto !important;
   white-space:normal !important;
-}*/
+}
 
 /* Synonymn tags *********************************************************************/
 span.term {
-  padding-right: 10px;
-  color: #333333;
+  color: #222222;
 }
 span.relatedTerm,
-span.usedFor {
-  color: grey;
+span.usedFor,
+span.usedFor-multi,
+span.usedFor-multi-factor {
   border: none;
-  font-size: 0.9em;
-  font-style: italic;
+  font-size: 0.85em;
+}
+span.relatedTerm:hover,
+span.usedFor:hover,
+span.usedFor-multi:hover,
+span.usedFor-multi-factor:hover {
+  text-decoration: underline;
 }
 span.relatedTerm:after,
-span.usedFor:after {
-  content: ',';
+span.usedFor:after,
+span.usedFor-multi:after,
+span.usedFor-multi-factor:after {
+  content: ';';
   margin-right: 5px;
+}
+span.usedFor {
+  font-style: italic;
+}
+/* multi-factor needs to use ALL synonymns*/
+span.usedFor-multi-factor {
+  color: red;
 }
 span:last-child:after {
   content: '' !important;
@@ -131,3 +144,6 @@ span.relatedTerm {
 span.relatedTerm:hover {
   text-decoration: underline; 
 }
+
+/* Src: https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css */
+.hljs{display:block;overflow-x:auto;padding:0.5em;background:#F0F0F0}.hljs,.hljs-subst{color:#444}.hljs-comment{color:#888888}.hljs-keyword,.hljs-attribute,.hljs-selector-tag,.hljs-meta-keyword,.hljs-doctag,.hljs-name{font-weight:bold}.hljs-type,.hljs-string,.hljs-number,.hljs-selector-id,.hljs-selector-class,.hljs-quote,.hljs-template-tag,.hljs-deletion{color:#880000}.hljs-title,.hljs-section{color:#880000;font-weight:bold}.hljs-regexp,.hljs-symbol,.hljs-variable,.hljs-template-variable,.hljs-link,.hljs-selector-attr,.hljs-selector-pseudo{color:#BC6060}.hljs-literal{color:#78A960}.hljs-built_in,.hljs-bullet,.hljs-code,.hljs-addition{color:#397300}.hljs-meta{color:#1f7199}.hljs-meta-string{color:#4d99bf}.hljs-emphasis{font-style:italic}.hljs-strong{font-weight:bold}

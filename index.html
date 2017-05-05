@@ -12,10 +12,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="./js/jstree/jstree.min.js"></script>
 
-    <!-- Syntax highlighter - https://highlightjs.org -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css" integrity="sha256-Zd1icfZ72UBmsId/mUcagrmN7IN5Qkrvh75ICHIQVTk=" crossorigin="anonymous" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js" integrity="sha256-+bhVTaRmJ/c07eV80nU8gD2cBBF0rYkf1txqXlrbvb0=" crossorigin="anonymous"></script>
-
     <!-- Tangle and TangleKit libs @src http://worrydream.com/Tangle/ -->
     <script type="text/javascript" src="./js/TangleKit/Tangle.js"></script>
     <link rel="stylesheet" href="./js/TangleKit/TangleKit.css" type="text/css">
@@ -23,6 +19,11 @@
     <script type="text/javascript" src="./js/TangleKit/sprintf.js"></script>
     <script type="text/javascript" src="./js/TangleKit/BVTouchable.js"></script>
     <script type="text/javascript" src="./js/TangleKit/TangleKit.js"></script>
+
+    <!-- Syntax highlighter - https://highlightjs.org -->
+<!--     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css" integrity="sha256-Zd1icfZ72UBmsId/mUcagrmN7IN5Qkrvh75ICHIQVTk=" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js" integrity="sha256-+bhVTaRmJ/c07eV80nU8gD2cBBF0rYkf1txqXlrbvb0=" crossorigin="anonymous"></script>
+ -->
 
     <!-- Tobias Explorer - css and js setup scripts -->
     <link rel="stylesheet" href="./css/style.css">
@@ -37,41 +38,34 @@
 
         <p id='skosButtonMain'>Show and hide the synonymns for terms in the tree. <button type='button' id='toggleSyns' accesskey='t'>Toggle synonymns</button></p>
 
-      <!--   <div class="language-xml highlighter-rouge"><pre class="highlight"><code><span class="c1">// Javascript code with syntax highlighting.</span>
-        <span class="kd">var</span> <span class="nx">fun</span> <span class="o">=</span> <span class="kd">function</span> <span class="nx">lang</span><span class="p">(</span><span class="nx">l</span><span class="p">)</span> <span class="p">{</span>
-          <span class="nx">dateformat</span><span class="p">.</span><span class="nx">i18n</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'./lang/'</span> <span class="o">+</span> <span class="nx">l</span><span class="p">)</span>
-          <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
-        <span class="p">}</span>
-        </code></pre>
-        </div>
+         <div id="skosConceptMain">
+          <h4>Generated skos:Concept</h4>
+          <div class="field">
+            <label>Concept name</label>:<br />
+            <span data-var="concept" class="TBTextField" id="concept" data-min="2" data-max="100" data-size='20' />
+            <br />
+          </div>
+          <div class="field">
+            <label>Ontology base uri</label>:<br />
+            <span data-var="uriFragment" class="TBTextField" id="uriFragment" data-min="2" data-max="100" data-size='20' />
+            <br />
+          </div>
+          <div class="field">
+            <label>Identifier</label>:
+            <span data-var="ident" class="TKAdjustableNumber" id="ident" data-min="1" data-max="1000" data-size='20'></span>
+          </div>
+          <br /><br />
 
- -->
-<div id="skosConceptMain">
-      <h4>Generated skos:Concept</h4>
-      <div class="field">
-        <label>Concept name</label>:<br />
-        <span data-var="concept" class="TBTextField" id="concept" data-min="2" data-max="100" data-size='20' />
-        <br />
-      </div>
-      <div class="field">
-        <label>Ontology base uri</label>:<br />
-        <span data-var="uriFragment" class="TBTextField" id="uriFragment" data-min="2" data-max="100" data-size='20' />
-        <br />
-      </div>
-      <div class="field">
-        <label>Identifier</label>:
-        <span data-var="ident" class="TKAdjustableNumber" id="ident" data-min="1" data-max="1000" data-size='20'></span>
-        <br /><br />
-      </div>
+<pre><code class="xml hljs"><span class="hljs-meta"><span class="php"><span class="hljs-meta">&lt;?</span>xml version=<span class="hljs-string">"1.0"</span> encoding=<span class="hljs-string">"UTF-8"</span><span class="hljs-meta">?&gt;</span></span></span>
+<span>&lt;skosConcept
+  <span>rdf:about="<strong><span class="hljs-string"><span data-var="uriFragmentDisplay"></span>/concepts/<span data-var="identDisplay"></span>/<span data-var="uriFragmentForURIDisplay"></span></span></strong><span>"&gt;</span>
+  <span>&lt;skos:prefLabel&gt;</span>
+    <strong><span data-var="conceptDisplay" /></strong>
+  <span>&lt;/skos:prefLabel&gt;</span>
+<span>&lt;/skosConcept&gt;</span></code>
+          </pre>
 
-      <pre class="xml">
-<code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&lt;skosConcept rdf:about="<strong><span data-var='uriFragmentDisplay' />/concepts/<span data-var='identDisplay' />/<span data-var='uriFragmentForURIDisplay' /></strong>"&gt;
-  &lt;skos:prefLabel&gt;<strong><span data-var='conceptDisplay' /></strong>&lt;/skos:prefLabel&gt;
-&lt;/skosConcept&gt;</code></pre>
-    </div><!-- End id='skosConceptMain -->
-
-
+        </div><!-- End id='skosConceptMain -->
 
       </header>
       <section>

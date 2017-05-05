@@ -4,7 +4,7 @@
  */
 
 // The synonymn span selector and state variable for visibility
-var synSelector = '.usedFor, .relatedTerm, .usedFor-multi';
+var synSelector = '.usedFor, .relatedTerm, .usedFor-multi, .usedFor-multi-factor';
 var synVisible = false;
 
 window.addEvent('domready', function(){
@@ -42,6 +42,11 @@ window.addEvent('domready', function(){
           'icons' : false,
         },
       },
+      // 'contextmenu' : {
+      //   'select_node' : false,
+      //   'show_at_node' : false,
+      //   'items' : customMenu,
+      // },
       'types' : {
         'default' : {
           'icon' : '',
@@ -83,8 +88,27 @@ window.addEvent('domready', function(){
       synVisible = !synVisible;
     });
 
-    // Initialise the highlight.js code block
-    $('pre code').each(function(i, block) {
-      hljs.highlightBlock(block);
-    });
 });
+
+
+// function customMenu(node)
+// {
+//     var items = {
+//         'item1' : {
+//             'label' : 'item1',
+//             'action' : function () { /* action */ }
+//         },
+//         'item2' : {
+//             'label' : 'item2',
+//             'action' : function () { /* action */ }
+//         }
+//     }
+// console.log(node);
+//     // if (node.type === 'level_1') {
+//     //     delete items.item2;
+//     // } else if (node.type === 'level_2') {
+//     //     delete items.item1;
+//     // }
+
+//     return items;
+// }
