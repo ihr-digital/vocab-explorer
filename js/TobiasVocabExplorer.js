@@ -20,9 +20,10 @@ $( document ).ready(function(){
         $(this).find(synSelector).show();
       }
     })
-    .on('select_node.jstree', function (e, data) {
-      
-    })
+    // .on('hover_node.jstree', function (e, data) {
+    //   console.log('hover_node');
+    //   // event.preventDefault();
+    // })
     // Create/init the tree
     .jstree({
       'core': {
@@ -55,43 +56,37 @@ $( document ).ready(function(){
       synVisible = !synVisible;
     });
 
-
-    // Setup the jQuery context menu to show/use when interacting with
-    // the synonymns
-    $.contextMenu({
-      selector: ".jstree-node span",
-      trigger: 'left',
-      build: function($trigger, e) {
-            // this callback is executed every time the menu is to be shown
-            // its results are destroyed every time the menu is hidden
-            // e is the original contextmenu event, containing e.pageX and e.pageY (amongst other data)
-            return {
-                callback: function(key, options) {
-                    var m = "clicked: " + key;
-                    window.console && console.log(m);
-                },
-                items: {
-                    "edit": {name: "Edit", icon: "edit"},
-                    "cut": {name: "Cut", icon: "cut"},
-                    "copy": {name: "Copy", icon: "copy"},
-                    "paste": {name: "Paste", icon: "paste"},
-                    "delete": {name: "Delete", icon: "delete"},
-                    "sep1": "---------",
-                    "quit": {name: "Quit", icon: function($element, key, item){ return 'context-menu-icon context-menu-icon-quit'; }}
-                }
-            };
-        }
-    });
 });
 
- $(document).on("keydown", ".context-menu-icon",
-        function(e){ 
-            console.log("key:", e.keyCode);
+
+// Setup the jQuery synonymn tooltips.
+// Done here to bind events to the document (and avoid the jstree intercepting events)
+$(document).on('mouseover', synSelector, function(event) {
+  $(this).qtip({ // Grab some elements to apply the tooltip to
+      content: {
+        text: 'My common piece of text here',
+        title: 'title',
+      },
+      position: {
+        my: 'top left',
+        at: 'bottom left',
+      },
+      show: {
+        event: 'click',
+        solo: true,
+        // ready: true,
+        delay: 0,
+      },
+      hide: {
+        fixed: true,
+        delay: 500,
+      },
+      style: {
+        classes: 'qtip-bootstrap qtip-shadow',
+        tip: {
+            corner: 'left centre'
         }
-    );
-$(document).on("contextmenu:focus", ".context-menu-item", 
-    function(e){ 
-        console.log("focus:", this);
-        e.stopPropagation();
-    }
-);
+      },
+    }, event);
+
+});
