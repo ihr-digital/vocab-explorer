@@ -38,7 +38,7 @@ th { color: #444; }
 
 img { max-width: 100%; }
 
-header { width: 40%; float: left; position: fixed; -webkit-font-smoothing: subpixel-antialiased; }
+header { -webkit-font-smoothing: subpixel-antialiased; background: #fff; padding-top: 10px; }
 
 header ul { list-style: none; height: 40px; padding: 0; background: #f4f4f4; border-radius: 5px; border: 1px solid #e0e0e0; width: 270px; }
 
@@ -60,13 +60,13 @@ header ul li + li + li { border-right: none; width: 89px; }
 
 header ul a strong { font-size: 14px; display: block; color: #222; }
 
-section { width: 55%; float: right; padding-bottom: 50px; }
+section { padding-bottom: 50px; }
 
 small { font-size: 11px; }
 
 hr { border: 0; background: #e5e5e5; height: 1px; margin: 0 0 20px; }
 
-footer { width: 40%; float: left; position: fixed; bottom: 50px; -webkit-font-smoothing: subpixel-antialiased; }
+footer { bottom: 50px; -webkit-font-smoothing: subpixel-antialiased; }
 
 @media print, screen and (max-width: 960px) { div.wrapper { width: auto; margin: 0; }
   header, section, footer { float: none; position: static; width: auto; }
@@ -95,6 +95,9 @@ span.firstSynonymn {
 /* Synonymn tags *********************************************************************/
 span.term {
   color: #222222;
+}
+span.term + span {  /* First syn span */
+  padding-left: 10px;
 }
 span.relatedTerm,
 span.usedFor,
@@ -130,5 +133,18 @@ span.relatedTerm {
   color: blue;
 }
 span.relatedTerm:hover {
-  text-decoration: underline; 
+  text-decoration: underline;
+}
+
+
+/* Misc tags *********************************************************************/
+#toggleSynsPara {
+  background: #fff;
+  padding: 10px;
+}
+
+.sticky {
+  position: fixed !important;
+  top: 0;
+  box-shadow: 0px 0px 5px #888888;
 }
