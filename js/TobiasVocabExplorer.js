@@ -21,9 +21,19 @@ $( document ).ready(function(){
       }
     })
     .on('model.jstree', function (e, data) {
-      console.log('model');
-      console.log(data);
-      // event.preventDefault();
+      // TODO: look into $.deferred to make this hash generation happen async.
+      console.log('model.jstree event');
+      modelData = data;
+      console.log(data.instance.get_node(data.nodes[0]));
+
+      // Iterate all the node data (because the dom objects aren't all visible)
+      // and build a reverse hash table for each of the synonymns. This allows
+      // the contextual menus to hyperlink back and forth in the tree.
+      // $(data.nodes).each(function(index, element) {
+      //   console.log('Processing ' + index);
+      //   // console.log(data.instance.get_node(element).text);
+      // });
+
     })
     // Create/init the tree
     .jstree({
@@ -56,42 +66,45 @@ $( document ).ready(function(){
       $(synSelector).toggle();
       synVisible = !synVisible;
     });
-
-});
-
-
-// Setup the jQuery synonymn tooltips.
-// Done here after document ready because qtip lazy-loads tooltips
-$(document).on('mouseover', synSelector, function(event) {
-  $(this).qtip({ // Grab some elements to apply the tooltip to
-      content: {
-        text: getTooltipContent(this),
-        title: getTooltipTitle(this),
-      },
-      position: {
-        my: 'top left',
-        at: 'bottom left',
-      },
-      show: {
-        event: 'click',
-        solo: true,
-        // ready: true,
-        delay: 0,
-        effect: function() {
-          $(this).slideDown(200);
-        }
-      },
-      hide: {
-        fixed: true,
-        delay: 300,
-      },
-      style: {
-        classes: 'qtip-light qtip-shadow',
-        tip: {
-            corner: 'left centre'
-        }
-      },
-    }, event);
+    // .keypress(function(event) {
+    //   console.log(event);
+    //   if (event.charCode == 116)  { // Key press 't'
+    //     $(synSelector).toggle();
+    //     synVisible = !synVisible;
+    //   }
+    // });
+    // Setup the jQuery synonymn tooltips on the tree's spans.
+    $(treeSelector).on('mouseenter', synSelector, function (event) {
+        $(this).qtip({
+            overwrite: false, // Don't overwrite tooltips already bound
+            show: {
+                event: 'click', //event.type, // Use the same event type as above
+                solo: true,
+                // ready: true, // Show immediately - important!
+                effect: function() {
+                  $(this).slideDown(200);
+                }
+            },
+            content: {
+              text: getTooltipContent(this),
+              title: getTooltipTitle(this),
+            },
+            position: {
+              my: 'top left',
+              at: 'bottom left',
+            },
+            hide: {
+              fixed: true,
+              delay: 300,
+            },
+            // style: {
+            //   classes: 'qtip-light qtip-shadow',
+            //   tip: {
+            //       corner: 'left centre'
+            //   }
+            // },
+        });
+    });
 
 });
 
@@ -139,7 +152,7 @@ function getTooltipContent (obj) {
       tipContent += '<li><a href="http://drupalvm.history.ac.uk/vocab-explorer/index-skos.html" >' + $(selected).text() + '</a></li>';
     });
 
-    console.log(synText);
+    // console.log(synText);
     tipContent += '</ul>';
     return tipContent;
   }
