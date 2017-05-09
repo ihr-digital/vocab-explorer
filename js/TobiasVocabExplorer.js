@@ -166,32 +166,36 @@ function getTooltipTitle (obj) {
 // Function to generate the tooltip content - lookup list of
 // related synonymns.
 //
+var nodes = {};
 function getTooltipContent (obj) {
-  synText = $(obj).text();
+  var synText = $(obj).text();
 
   if ($(obj).hasClass('usedFor-multi') ||
       $(obj).hasClass('usedFor-multi-factor') ||
       $(obj).hasClass('relatedTerm')) {
 
-    nodeIds = synLookup[synText] || [];
-    //nodes = $(treeSelector).jstree(true).load_node(nodeIds);
+    var nodeIds = synLookup[synText] || [];  // Default empty array
+    nodes = {};
+    nodeIds.forEach(function(id) {
+      var n = $(treeSelector).jstree(true).get_node(id).text;
+      // Dummy div to perform the .find() from the parsed HTML string.
+      var t = $('<div />').append($.parseHTML(n)).find('span.term').text();
+      nodes[id] = t;  // id : term name
+    });
+
+    // 
     console.log('Syn text: ' + synText);
     console.log('Node ids: ' + nodeIds);
-    console.log('Nodes: ' + nodes);
+    console.log(nodes);
 
     // Search the tree for other terms with this synonymn
     tipContent = '<ul>';
-    // nodes = $(treeSelector).find('span')
-    // .filter(function() {
-    //   return $(this).text() == synText;
-    // })
-    // .prevAll('span.term')
-    // .each(function(i, selected){
-    //   tipContent += '<li><a href="http://drupalvm.history.ac.uk/vocab-explorer/index-skos.html" >' + $(selected).text() + '</a></li>';
-    // });
+    for(var index in nodes) {
+      tipContent += '<li><a href="#'+ index +'" >'+ nodes[index] +'</a></li>';
+    };
 
     // console.log(synText);
-    tipContent += 'Hi</ul>';
+    tipContent += '</ul>';
     return tipContent;
   }
 
