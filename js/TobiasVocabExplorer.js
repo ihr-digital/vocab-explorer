@@ -20,15 +20,16 @@ $( document ).ready(function(){
         $(this).find(synSelector).show();
       }
     })
-    // .on('hover_node.jstree', function (e, data) {
-    //   console.log('hover_node');
-    //   // event.preventDefault();
-    // })
+    .on('model.jstree', function (e, data) {
+      console.log('model');
+      console.log(data);
+      // event.preventDefault();
+    })
     // Create/init the tree
     .jstree({
       'core': {
         'data' : {
-          'url' : 'data/bbih-vocabulary-sample.html',  // Get the tree data from here.
+          'url' : 'data/bbih-vocabulary.html',  // Get the tree data from here.
         },
         'multiple' : false,  // Single selection only.
         'themes': {
@@ -60,12 +61,12 @@ $( document ).ready(function(){
 
 
 // Setup the jQuery synonymn tooltips.
-// Done here to bind events to the document (and avoid the jstree intercepting events)
+// Done here after document ready because qtip lazy-loads tooltips
 $(document).on('mouseover', synSelector, function(event) {
   $(this).qtip({ // Grab some elements to apply the tooltip to
       content: {
-        text: 'My common piece of text here',
-        title: 'title',
+        text: getTooltipContent(this),
+        title: getTooltipTitle(this),
       },
       position: {
         my: 'top left',
@@ -76,13 +77,16 @@ $(document).on('mouseover', synSelector, function(event) {
         solo: true,
         // ready: true,
         delay: 0,
+        effect: function() {
+          $(this).slideDown(200);
+        }
       },
       hide: {
         fixed: true,
-        delay: 500,
+        delay: 300,
       },
       style: {
-        classes: 'qtip-bootstrap qtip-shadow',
+        classes: 'qtip-light qtip-shadow',
         tip: {
             corner: 'left centre'
         }
@@ -90,3 +94,58 @@ $(document).on('mouseover', synSelector, function(event) {
     }, event);
 
 });
+
+
+
+//----------------------------------------------------------
+//
+// Function to generate the tooltip title depending on the
+// class of the object.
+//
+function getTooltipTitle (obj) {
+  if ($(obj).hasClass('usedFor-multi')) {
+    return 'Use <em>one or more</em> of these terms:';
+
+  } else if ($(obj).hasClass('usedFor-multi-factor')) {
+    return 'Use <strong>ALL</strong> of these terms:';
+
+  } else if ($(obj).hasClass('relatedTerm')) {
+    return 'Consider these additional terms:';
+  }
+
+  return null;  // No title
+}
+
+//----------------------------------------------------------
+//
+// Function to generate the tooltip content - lookup list of
+// related synonymns.
+//
+function getTooltipContent (obj) {
+  synText = $(obj).text();
+
+  if ($(obj).hasClass('usedFor-multi') ||
+      $(obj).hasClass('usedFor-multi-factor') ||
+      $(obj).hasClass('relatedTerm')) {
+
+    // Search the tree for other terms with this synonymn
+    tipContent = '<ul>';
+    nodes = $(treeSelector).find('span')
+    .filter(function() {
+      return $(this).text() == synText;
+    })
+    .prevAll('span.term')
+    .each(function(i, selected){
+      tipContent += '<li><a href="http://drupalvm.history.ac.uk/vocab-explorer/index-skos.html" >' + $(selected).text() + '</a></li>';
+    });
+
+    console.log(synText);
+    tipContent += '</ul>';
+    return tipContent;
+  }
+
+  // usedFor terms return their parent term.
+  $term = $(obj).prevAll('.term');
+
+  return '"' + $(obj).prevAll('.term').text() + '" is the preferred term.';  // No title
+}
