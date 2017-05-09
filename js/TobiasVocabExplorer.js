@@ -7,7 +7,7 @@
 var synSelector = '.usedFor, .relatedTerm, .usedFor-multi, .usedFor-multi-factor';
 var synVisible = true;
 var treeSelector = '#tobias-jsTree';
-
+var synLookup = {};  // The syn reverse lookup dict.
 
 $( document ).ready(function(){
     // Initialise the tree and setup handlers
@@ -21,19 +21,23 @@ $( document ).ready(function(){
       }
     })
     .on('model.jstree', function (e, data) {
-      // TODO: look into $.deferred to make this hash generation happen async.
       console.log('model.jstree event');
-      modelData = data;
-      console.log(data.instance.get_node(data.nodes[0]));
-
       // Iterate all the node data (because the dom objects aren't all visible)
       // and build a reverse hash table for each of the synonymns. This allows
       // the contextual menus to hyperlink back and forth in the tree.
-      // $(data.nodes).each(function(index, element) {
-      //   console.log('Processing ' + index);
-      //   // console.log(data.instance.get_node(element).text);
-      // });
-
+      // We get the node text, parse it into jquery, and select the spans text.
+      t0 = performance.now();
+      data.nodes.forEach(function(i) {
+        $('<div/>').html(data.instance.get_node(i).text)
+        .find(synSelector).each(function() {
+          // Add id to the synLookup dictionary
+          var currNids = synLookup[$(this).text()] || [];
+          currNids.push(i);
+          synLookup[$(this).text()] = currNids;
+        });
+      });
+      t1 = performance.now();
+      console.log('Call to forEach took ' + (t1 - t0) + 'milliseconds');
     })
     // Create/init the tree
     .jstree({
@@ -55,6 +59,10 @@ $( document ).ready(function(){
         'usedFor' : {
           'icon' : 'glyphicon glyphicon-ok',
         },
+      },
+      'state' : {
+        // 'ttl' : 86400000,  // 1 day in milliseconds
+        'ttl' : 60000,  // 30 seconds in milliseconds
       },
       // "search": {
       //       "case_insensitive": true,
@@ -134,7 +142,6 @@ $( document ).ready(function(){
 });
 
 
-
 //----------------------------------------------------------
 //
 // Function to generate the tooltip title depending on the
@@ -166,19 +173,25 @@ function getTooltipContent (obj) {
       $(obj).hasClass('usedFor-multi-factor') ||
       $(obj).hasClass('relatedTerm')) {
 
+    nodeIds = synLookup[synText] || [];
+    //nodes = $(treeSelector).jstree(true).load_node(nodeIds);
+    console.log('Syn text: ' + synText);
+    console.log('Node ids: ' + nodeIds);
+    console.log('Nodes: ' + nodes);
+
     // Search the tree for other terms with this synonymn
     tipContent = '<ul>';
-    nodes = $(treeSelector).find('span')
-    .filter(function() {
-      return $(this).text() == synText;
-    })
-    .prevAll('span.term')
-    .each(function(i, selected){
-      tipContent += '<li><a href="http://drupalvm.history.ac.uk/vocab-explorer/index-skos.html" >' + $(selected).text() + '</a></li>';
-    });
+    // nodes = $(treeSelector).find('span')
+    // .filter(function() {
+    //   return $(this).text() == synText;
+    // })
+    // .prevAll('span.term')
+    // .each(function(i, selected){
+    //   tipContent += '<li><a href="http://drupalvm.history.ac.uk/vocab-explorer/index-skos.html" >' + $(selected).text() + '</a></li>';
+    // });
 
     // console.log(synText);
-    tipContent += '</ul>';
+    tipContent += 'Hi</ul>';
     return tipContent;
   }
 
