@@ -56,8 +56,12 @@ $( document ).ready(function(){
           'icon' : 'glyphicon glyphicon-ok',
         },
       },
+      // "search": {
+      //       "case_insensitive": true,
+      //       "show_only_matches" : true,
+      // },
       // Customise some node types and persist opened state
-      'plugins' : [ 'types', 'state' ],
+      'plugins' : [ 'types', 'state' ]//, 'search' ],
     });
 
 
@@ -105,6 +109,27 @@ $( document ).ready(function(){
             // },
         });
     });
+
+    // Keep the Toggle synonymns paragraph/button on screen as you scroll down.
+    var $window = $(window),
+        $sticky = $('#toggleSynsPara'),
+        stickyTop = $sticky.offset().top;
+    $window.scroll(function() {
+      $sticky.toggleClass('sticky', $window.scrollTop() + 10 > stickyTop);
+    });
+
+    // // Bind the search box keystrokes to the jstree search
+    // var tOut = false;
+    // $(".search-input").keyup(function() {
+    //   var searchString = $(this).val();
+    //   console.log(searchString);
+    //   if(tOut) {
+    //     clearTimeout(tOut);
+    //   }
+    //   tOut = setTimeout(function() {
+    //     $(treeSelector).jstree(true).search(searchString);
+    //   }, 250);
+    // });
 
 });
 
