@@ -50,6 +50,7 @@ $( document ).ready(function(){
           'name': 'proton',  // Awesome oss theme!
           'responsive': true,
           'icons' : false,
+          // 'variant' : 'large',
         },
       },
       'types' : {
@@ -94,7 +95,7 @@ $( document ).ready(function(){
                 solo: true,
                 // ready: true, // Show immediately - important!
                 effect: function() {
-                  $(this).slideDown(200);
+                  $(this).slideDown(100);
                 }
             },
             content: {
@@ -106,15 +107,18 @@ $( document ).ready(function(){
               at: 'bottom left',
             },
             hide: {
+              event: 'click',
               fixed: true,
-              delay: 300,
+              inactive: 3000,
             },
-            // style: {
-            //   classes: 'qtip-light qtip-shadow',
-            //   tip: {
-            //       corner: 'left centre'
-            //   }
-            // },
+            events: {
+              render: function(event, api) {
+                var elem = api.elements.tip;  // Use 'tip' element
+              }
+            },
+            style: {
+              classes: 'qtip-bootstrap qtip-shadow',
+            },
         });
     });
 
