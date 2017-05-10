@@ -3,13 +3,18 @@
  * TOBIAS Project, IHR Digital, 2017-05
  */
 
-// The synonymn span selector and state variable for visibility
+// The tree and synonymn span selectors, a state variable for initial 
+// visibility of synonymns, and the reverse lookup synonymn dictionary.
 var synSelector = '.usedFor, .relatedTerm, .usedFor-multi, .usedFor-multi-factor';
 var synVisible = true;
 var treeSelector = '#tobias-jsTree';
 var synLookup = {};  // The syn reverse lookup dict.
-var searchString = null;
 
+
+//----------------------------------------------------------
+//
+// Setup jsTree, tooltips, toggle and search behaviour.
+//
 $(document).ready(function(){
     // Initialise the tree and setup handlers
     $(treeSelector)
@@ -37,12 +42,18 @@ $(document).ready(function(){
       });
     })
     .on('activate_node.jstree', function (e, data) {
-      // Update the breadcrumb.
       var node = data.node;
+
+      // Hide breadcrumb if node is not selected.
+      if (!$(treeSelector).jstree(true).is_selected(node)) {
+        $('#breadcrumb').html('');
+        return;
+      }
 
       // Build the breadcrumb
       var nodeIds = $(treeSelector).jstree(true).get_path(node, false, true);
       var breadcrumb = [];
+
       nodeIds.forEach(function(id) {
         var n = $(treeSelector).jstree(true).get_node(id).text;
         // Dummy div to perform the .find() from the parsed HTML string.
@@ -77,9 +88,9 @@ $(document).ready(function(){
         // 'ttl' : 86400000,  // 1 day in milliseconds
         'ttl' : 60000,  // 30 seconds in milliseconds
       },
-      // "search": {
-      //       "case_insensitive": true,
-      //       "show_only_matches" : true,
+      // 'search': {
+      //   'case_insensitive': true,
+      //   'show_only_matches' : true,
       // },
       // Customise some node types and persist opened state
       'plugins' : [ 'types', 'state', 'search' ],
@@ -128,13 +139,7 @@ $(document).ready(function(){
       $(synSelector).toggle();
       synVisible = !synVisible;
     });
-    // .keypress(function(event) {
-    //   console.log(event);
-    //   if (event.charCode == 116)  { // Key press 't'
-    //     $(synSelector).toggle();
-    //     synVisible = !synVisible;
-    //   }
-    // });
+
 
     // Keep the Toggle synonymns paragraph/button on screen as you scroll down.
     var $window = $(window),
@@ -144,17 +149,16 @@ $(document).ready(function(){
       $sticky.toggleClass('sticky', $window.scrollTop() + 10 > stickyTop);
     });
 
+
     // // Bind the search box keystrokes to the jstree search
     // var tOut = false;
     $("#search-input").keyup(function() {
-      searchString = $(this).val();
-      console.log(searchString);
-    //   if(tOut) {
-    //     clearTimeout(tOut);
-    //   }
-    //   tOut = setTimeout(function() {
-    //     $(treeSelector).jstree(true).search(searchString);
-    //   }, 250);
+      clearTimeout($.data(this, 'timer'));
+      var context = this;  // To pass this into the anon func
+      var wait = setTimeout(function() {
+        $(treeSelector).jstree(true).search($(context).val(), true);
+      }, 1000);
+      $(this).data('timer', wait);
     });
 
 });
@@ -230,18 +234,15 @@ function getTooltipContent (obj) {
 
 //----------------------------------------------------------
 //
-// Dynamically attach click handler to the tooltip links
-// (which will have a data-jstree-id attribute).
+// Dynamically attach click handler to the tooltip hyperlinks
+// to smooth scroll to the jsTree node.
+// (the hyperlink stores the data-jstree-id attribute)
 //
 $(document).on('click',  'a[data-jstree-id]', function() {
-  console.log($(this).data('jstree-id') + ' clicked!');
-  // $(treeSelector).jstree(true).deselect_all();
   $(treeSelector).jstree(true).activate_node($(this).data('jstree-id'))
+  var nid = '#' + $(this).data('jstree-id');
 
-  // Smoth scroll to the element
-  var uid = '#' + $(this).data('jstree-id');
   $('html, body').animate({
-    scrollTop: $(uid).offset().top - 200
-  }, 500);
-  // $(document).getElementById($(this).data('jstree-id')).scrollIntoView();
+    scrollTop: $(nid).offset().top - 200
+  }, 500);  // 0.5sec animation
 });

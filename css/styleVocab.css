@@ -17,18 +17,3 @@
   border:1px solid silver;
   font-size:1.1em;
 }
-
-/* Undo styling for term span styles used in the info paragraph */
-#toggleSynsPara span.relatedTerm,
-#toggleSynsPara span.usedFor,
-#toggleSynsPara span.usedFor-multi,
-#toggleSynsPara span.usedFor-multi-factor {
-  font-size: 1em;
-}
-#toggleSynsPara span.relatedTerm:after,
-#toggleSynsPara span.usedFor:after,
-#toggleSynsPara span.usedFor-multi:after,
-#toggleSynsPara span.usedFor-multi-factor:after {
-  content: none;
-  margin-right: 0;
-}

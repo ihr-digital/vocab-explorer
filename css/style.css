@@ -123,13 +123,15 @@ span.usedFor {
   font-style: italic;
 }
 /* multi-factor needs to use ALL synonymns*/
-span.usedFor-multi-factor {
+span.usedFor-multi-factor,
+span.usedFor-info {
   color: #9e0a0a;
 }
 span:last-child:after {
   content: '' !important;
 }
-span.relatedTerm {
+span.relatedTerm,
+span.relatedTerm-info {
   color: blue;
 }
 span.relatedTerm:hover {
