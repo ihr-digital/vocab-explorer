@@ -7,7 +7,7 @@ with open ('bbih-vocabulary.xml', 'r') as f1:
 
 text = re.sub('\n', '', text)
 text = re.sub('<lev', '\n<lev', text)
-text = re.sub('<bbih-vocab>', '\n<ul><li>Bibliography of British and Irish History vocabulary explorer', text)
+text = re.sub('<bbih-vocab>', '\n<ul><li>Bibliography of British and Irish History vocabulary', text)
 text = re.sub('</bbih-vocab>', '\n</li></ul>', text)
 text = re.sub('<lev[0-9]+><rhs[^>]+>([^<]+)<', '<ul><li><span class="term">\\1</span><', text)
 text = re.sub('</rhs>\n', '</span>\n', text)

@@ -43,10 +43,9 @@ $(document).ready(function(){
         },
         'multiple' : false,  // Single selection only.
         'themes': {
-          'name': 'proton',  // Awesome oss theme!
+          'name': 'proton',  // Awesome oss jsTree theme!
           'responsive': true,
           'icons' : false,
-          // 'variant' : 'large',
         },
       },
       'types' : {
@@ -169,40 +168,63 @@ function getTooltipTitle (obj) {
 // Function to generate the tooltip content
 // Lookup list of related synonymns.
 //
+var synNode = null;
 function getTooltipContent (obj) {
   var synText = $(obj).text();
+  synNode = $(obj).closest('li.jstree-node');
 
   // Specific classes get syn list.
   if ($(obj).hasClass('usedFor-multi') ||
       $(obj).hasClass('usedFor-multi-factor') ||
       $(obj).hasClass('relatedTerm')) {
 
+    // Search the tree for other terms with this synonymn
     var nodeIds = synLookup[synText] || [];  // Default empty array
     var nodes = {};
     nodeIds.forEach(function(id) {
       var n = $(treeSelector).jstree(true).get_node(id).text;
       // Dummy div to perform the .find() from the parsed HTML string.
       var t = $('<div />').append($.parseHTML(n)).find('span.term').text();
-      nodes[id] = t;  // id : term name
+      nodes[id] = t;  // id: term name
     });
 
-    // 
-    console.log('Syn text: ' + synText);
-    console.log('Node ids: ' + nodeIds);
-    console.log(nodes);
+    // Sort the related nodes alphabetically
+    // TODO: sort it.
 
-    // Search the tree for other terms with this synonymn
+    // Generate list from nodes dict
     tipContent = '<ul>';
     for(var index in nodes) {
-      tipContent += '<li><a href="#'+ index +'" >'+ nodes[index] +'</a></li>';
+      if (index == $(synNode).attr('id')) {
+        // If node is the current node, display without link.
+        tipContent += '<li><em>'+ nodes[index] +'</em></li>';
+      } else {
+        tipContent += '<li><a data-jstree-id="'+ index +'"" href="javascript:void(0)" >'+ nodes[index] +'</a></li>';
+      }
     };
-
-    // console.log(synText);
     tipContent += '</ul>';
+
     return tipContent;
   }
 
   // .usedFor terms simply return their parent term.
-  // $term = $(obj).prevAll('.term');
-  return '"' + $(obj).prevAll('.term').text() + '" is the preferred term.';
+  return '"<em>' + $(obj).prevAll('.term').text() + '</em>" is the preferred term.';
 }
+
+
+//----------------------------------------------------------
+//
+// Dynamically attach click handler to the tooltip links
+// (which will have a data-jstree-id attribute).
+//
+$(document).on('click',  'a[data-jstree-id]', function() {
+  console.log($(this).data('jstree-id') + ' clicked!');
+  // $(treeSelector).jstree(true).deselect_all();
+  $(treeSelector).jstree(true).activate_node($(this).data('jstree-id'))
+
+  // Smoth scroll to the element
+  var uid = '#' + $(this).data('jstree-id');
+  $('html, body').animate({
+    scrollTop: $(uid).offset().top - 200
+  }, 500);
+  // $(document).getElementById($(this).data('jstree-id')).scrollIntoView();
+});
