@@ -14,11 +14,6 @@
     <link rel="stylesheet" href="./js/jstree/themes/proton/style.css" />
     <script type="text/javascript" src="./js/jstree/jstree.min.js"></script>
 
-    <!-- JQuery context menu scripts -->
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.4.4/jquery.contextMenu.min.css" integrity="sha256-YuOrwsZAcqyUg97xxiV5uOUGLmxxomEqyH93bSLRdTM=" crossorigin="anonymous" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.4.4/jquery.contextMenu.min.js" integrity="sha256-2eDHELWEWaBzsRY+ct6wn0zfDtzKsnsurRZ1DsW8MQc=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.4.4/jquery.ui.position.min.js" integrity="sha256-C7HjUf9VdfVJ5Dxet+nW9wK7rKLAhEkEYMjGXsw7FM8=" crossorigin="anonymous"></script> -->
-
     <!-- qTip2 tooltips -->
     <link rel="stylesheet" href="./js/qtip/jquery.qtip.min.css" />
     <script src="./js/qtip/jquery.qtip.min.js"></script>
@@ -33,7 +28,11 @@
     <div class="wrapper">
       <header>
         <h1>Bibliography of British and Irish History Vocabulary Explorer</h1>
-        <p id='toggleSynsPara'>Show and hide the synonymns for terms in the tree. <button type='button' id='toggleSyns' accesskey='t'>Toggle synonymns</button></p>
+        <div id='toggleSynsPara'>
+          <p><input type="text" value="" id="search-input" placeholder="Search">
+          or <button type='button' id='toggleSyns' accesskey='t'>show/hide</button> the <span class="relatedTerm">related</span> and <span class="usedFor-multi-factor">non-preferred</span> terms in the tree.</p>
+          <p id='breadcrumb'></p>
+        </div>
       </header>
 
     <section>

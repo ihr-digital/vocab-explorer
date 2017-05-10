@@ -8,6 +8,7 @@ var synSelector = '.usedFor, .relatedTerm, .usedFor-multi, .usedFor-multi-factor
 var synVisible = true;
 var treeSelector = '#tobias-jsTree';
 var synLookup = {};  // The syn reverse lookup dict.
+var searchString = null;
 
 $(document).ready(function(){
     // Initialise the tree and setup handlers
@@ -34,6 +35,22 @@ $(document).ready(function(){
           synLookup[$(this).text()] = currNids;
         });
       });
+    })
+    .on('activate_node.jstree', function (e, data) {
+      // Update the breadcrumb.
+      var node = data.node;
+
+      // Build the breadcrumb
+      var nodeIds = $(treeSelector).jstree(true).get_path(node, false, true);
+      var breadcrumb = [];
+      nodeIds.forEach(function(id) {
+        var n = $(treeSelector).jstree(true).get_node(id).text;
+        // Dummy div to perform the .find() from the parsed HTML string.
+        var t = $('<div />').append($.parseHTML(n)).find('span.term').text();
+        breadcrumb.push('<a data-jstree-id="'+ id +'"" href="javascript:void(0)">'+ t +'</a>');
+      });
+
+      $('#breadcrumb').html(breadcrumb.join(' &gt; '));
     })
     // Create/init the tree
     .jstree({
@@ -65,7 +82,7 @@ $(document).ready(function(){
       //       "show_only_matches" : true,
       // },
       // Customise some node types and persist opened state
-      'plugins' : [ 'types', 'state' ]//, 'search' ],
+      'plugins' : [ 'types', 'state', 'search' ],
     });
 
 
@@ -129,16 +146,16 @@ $(document).ready(function(){
 
     // // Bind the search box keystrokes to the jstree search
     // var tOut = false;
-    // $(".search-input").keyup(function() {
-    //   var searchString = $(this).val();
-    //   console.log(searchString);
+    $("#search-input").keyup(function() {
+      searchString = $(this).val();
+      console.log(searchString);
     //   if(tOut) {
     //     clearTimeout(tOut);
     //   }
     //   tOut = setTimeout(function() {
     //     $(treeSelector).jstree(true).search(searchString);
     //   }, 250);
-    // });
+    });
 
 });
 
