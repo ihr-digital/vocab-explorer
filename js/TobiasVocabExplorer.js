@@ -9,11 +9,11 @@ var synVisible = true;
 var treeSelector = '#tobias-jsTree';
 var synLookup = {};  // The syn reverse lookup dict.
 
-$( document ).ready(function(){
+$(document).ready(function(){
     // Initialise the tree and setup handlers
     $(treeSelector)
-    // As nodes are opened, obey global synonymn visibility state
     .on('before_open.jstree', function (e, data) {
+      // As nodes are opened, obey global synonymn visibility state
       if (synVisible == false) {
         $(this).find(synSelector).hide();
       } else {
@@ -21,12 +21,10 @@ $( document ).ready(function(){
       }
     })
     .on('model.jstree', function (e, data) {
-      console.log('model.jstree event');
       // Iterate all the node data (because the dom objects aren't all visible)
       // and build a reverse hash table for each of the synonymns. This allows
       // the contextual menus to hyperlink back and forth in the tree.
       // We get the node text, parse it into jquery, and select the spans text.
-      t0 = performance.now();
       data.nodes.forEach(function(i) {
         $('<div/>').html(data.instance.get_node(i).text)
         .find(synSelector).each(function() {
@@ -36,8 +34,6 @@ $( document ).ready(function(){
           synLookup[$(this).text()] = currNids;
         });
       });
-      t1 = performance.now();
-      console.log('Call to forEach took ' + (t1 - t0) + 'milliseconds');
     })
     // Create/init the tree
     .jstree({
@@ -74,18 +70,6 @@ $( document ).ready(function(){
     });
 
 
-    // Setup toggle synonymns function for button click
-    $('#toggleSyns').click(function() {
-      $(synSelector).toggle();
-      synVisible = !synVisible;
-    });
-    // .keypress(function(event) {
-    //   console.log(event);
-    //   if (event.charCode == 116)  { // Key press 't'
-    //     $(synSelector).toggle();
-    //     synVisible = !synVisible;
-    //   }
-    // });
     // Setup the jQuery synonymn tooltips on the tree's spans.
     $(treeSelector).on('mouseenter', synSelector, function (event) {
         $(this).qtip({
@@ -122,6 +106,20 @@ $( document ).ready(function(){
         });
     });
 
+
+    // Setup toggle synonymns function for button click
+    $('#toggleSyns').click(function() {
+      $(synSelector).toggle();
+      synVisible = !synVisible;
+    });
+    // .keypress(function(event) {
+    //   console.log(event);
+    //   if (event.charCode == 116)  { // Key press 't'
+    //     $(synSelector).toggle();
+    //     synVisible = !synVisible;
+    //   }
+    // });
+
     // Keep the Toggle synonymns paragraph/button on screen as you scroll down.
     var $window = $(window),
         $sticky = $('#toggleSynsPara'),
@@ -148,8 +146,8 @@ $( document ).ready(function(){
 
 //----------------------------------------------------------
 //
-// Function to generate the tooltip title depending on the
-// class of the object.
+// Function to generate the tooltip title
+// Title depends on the class of the object.
 //
 function getTooltipTitle (obj) {
   if ($(obj).hasClass('usedFor-multi')) {
@@ -165,21 +163,22 @@ function getTooltipTitle (obj) {
   return null;  // No title
 }
 
+
 //----------------------------------------------------------
 //
-// Function to generate the tooltip content - lookup list of
-// related synonymns.
+// Function to generate the tooltip content
+// Lookup list of related synonymns.
 //
-var nodes = {};
 function getTooltipContent (obj) {
   var synText = $(obj).text();
 
+  // Specific classes get syn list.
   if ($(obj).hasClass('usedFor-multi') ||
       $(obj).hasClass('usedFor-multi-factor') ||
       $(obj).hasClass('relatedTerm')) {
 
     var nodeIds = synLookup[synText] || [];  // Default empty array
-    nodes = {};
+    var nodes = {};
     nodeIds.forEach(function(id) {
       var n = $(treeSelector).jstree(true).get_node(id).text;
       // Dummy div to perform the .find() from the parsed HTML string.
@@ -203,8 +202,7 @@ function getTooltipContent (obj) {
     return tipContent;
   }
 
-  // usedFor terms return their parent term.
-  $term = $(obj).prevAll('.term');
-
-  return '"' + $(obj).prevAll('.term').text() + '" is the preferred term.';  // No title
+  // .usedFor terms simply return their parent term.
+  // $term = $(obj).prevAll('.term');
+  return '"' + $(obj).prevAll('.term').text() + '" is the preferred term.';
 }
