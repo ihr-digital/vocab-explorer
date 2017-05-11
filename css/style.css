@@ -180,9 +180,6 @@ span.relatedTerm:hover {
 }
 
 /* The syns/search/info paragraph */
-#sticky-header {
-  max-width: 50%;
-}
 #sticky-header p,
 #sticky-header h4 {
   margin-bottom: 5px;
