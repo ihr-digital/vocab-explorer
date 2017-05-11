@@ -107,8 +107,7 @@ $(document).ready(function(){
         },
       },
       'state' : {
-        // 'ttl' : 86400000,  // 1 day in milliseconds
-        'ttl' : 60000,  // 30 seconds in milliseconds
+        'ttl' : 86400000,  // 1 day in milliseconds
       },
       // Customise some node types and persist opened state
       'plugins' : [ 'types', 'state', 'search' ],
