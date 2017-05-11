@@ -119,6 +119,12 @@ span.usedFor-multi-factor:after {
   content: ';';
   margin-right: 5px;
 }
+span.parenFirst:before {
+  content: '(' !important;
+}
+a span.parenLast:after {
+  content: ')' !important;
+}
 span.usedFor {
   font-style: italic;
 }
@@ -126,9 +132,6 @@ span.usedFor {
 span.usedFor-multi-factor,
 span.usedFor-info {
   color: #9e0a0a;
-}
-span:last-child:after {
-  content: '' !important;
 }
 span.relatedTerm,
 span.relatedTerm-info {
@@ -144,11 +147,16 @@ span.relatedTerm:hover {
   background: #fff;
   padding: 10px;
 }
-
 .sticky {
   position: fixed !important;
   top: 0;
   box-shadow: 0px 0px 5px #888888;
+}
+.loading {
+  background-image: url("../js/jstree/themes/proton/throbber.gif");
+  background-size: 16px 16px;
+  background-position: right 3px center;
+  background-repeat: no-repeat;
 }
 
 .qtip-content ul {

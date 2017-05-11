@@ -10,7 +10,8 @@ var synSelector = '.usedFor, .relatedTerm, .usedFor-multi, .usedFor-multi-factor
 var treeSelector = '#tobias-jsTree';
 var synVisible = true;
 var synLookup = {};  // The syn reverse lookup dict.
-
+var searchresults = null;  // The jquery collection of matching nodes returned by jsTree
+// var searchresultid = null;  // The index of the currently viewed search result (for paging)
 
 //----------------------------------------------------------
 //
@@ -19,13 +20,18 @@ var synLookup = {};  // The syn reverse lookup dict.
 $(document).ready(function(){
     // Initialise the tree and setup handlers
     $(treeSelector)
-    .on('before_open.jstree', function (e, data) {
+    .on('ready.jstree before_open.jstree', function (e, data) {
       // As nodes are opened, obey global synonymn visibility state
       if (synVisible == false) {
         $(this).find(synSelector).hide();
       } else {
         $(this).find(synSelector).show();
       }
+      // Add parentheses before/after the related terms.
+      $(this).find('ul > li').each(function () {
+        $(this).find('span.relatedTerm').first().addClass('parenFirst');
+        $(this).find('span.relatedTerm').last().addClass('parenLast');
+      });
     })
     .on('model.jstree', function (e, data) {
       // Iterate all the node data (because the dom objects aren't all visible)
@@ -45,9 +51,13 @@ $(document).ready(function(){
     .on('activate_node.jstree', function (e, data) {
       var node = data.node;
 
-      // Hide breadcrumb if node is not selected.
+      // If node is not selected, show search or empty breadcrumb.
       if (!$(treeSelector).jstree(true).is_selected(node)) {
-        $('#breadcrumb').html('');
+        if (searchresults) {
+          $('#breadcrumb').html('Found ' + searchresults.length + ' matches.');
+        } else {
+          $('#breadcrumb').html('');
+        }
         return;
       }
 
@@ -63,6 +73,17 @@ $(document).ready(function(){
       });
 
       $('#breadcrumb').html(breadcrumb.join(' &gt; '));
+    })
+    .on('search.jstree', function (e, data) {
+      // Respond to the search by updating the breadcrumb with result count.
+      searchresults = data.nodes;
+      $('#search-input').removeClass('loading');
+      $('#breadcrumb').html('Found ' + searchresults.length + ' matches.');
+    })
+    .on('clear_search.jstree', function (e, data) {
+      searchresults = null;
+      $('#search-input').removeClass('loading');
+      $('#breadcrumb').html('');
     })
     // Create/init the tree
     .jstree({
@@ -115,9 +136,8 @@ $(document).ready(function(){
               at: 'bottom left',
             },
             hide: {
-              event: 'click',
+              event: 'unfocus',
               fixed: true,
-              inactive: 3000,
             },
             events: {
               render: function(event, api) {
@@ -141,8 +161,16 @@ $(document).ready(function(){
     // Bind the search box keystrokes to the jstree search
     // var tOut = false;
     $("#search-input").keyup(function() {
-      clearTimeout($.data(this, 'timer'));
       var context = this;  // To pass this into the anon func
+      $(context).addClass('loading');
+
+      // Check for empty/clear search
+      if(!$(context).val()) {
+        $(treeSelector).jstree(true).clear_search();
+        return;
+      }
+
+      clearTimeout($.data(this, 'timer'));
       var wait = setTimeout(function() {
         $(treeSelector).jstree(true).search($(context).val(), true);
       }, 1000);
