@@ -1,20 +1,23 @@
 <!DOCTYPE html>
-<!-- saved from url=(0039)https://pages-themes.github.io/minimal/ -->
-<html lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Bibliography of British and Irish History vocabulary explorer</title>
-
     <meta name="viewport" content="width=device-width">
+    <meta name="description" content="Bibliography of British and Irish History vocabulary explorer UI">
+    <meta name="keywords" content="Institute of Historical Research, IHR, BBIH, Tobias, volcabulary, bibliography" />
+
+    <title>Bibliography of British and Irish History vocabulary explorer</title>
 
     <!-- Jquery from the CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 
-    <!-- JSTree jquery plugin libs @src https://www.jstree.com/ -->
+    <!-- jsTree jquery libs -->
     <link rel="stylesheet" href="./js/jstree/themes/proton/style.css" />
     <script type="text/javascript" src="./js/jstree/jstree.min.js"></script>
 
-    <!-- qTip2 tooltips -->
+    <!-- qTip2 tooltips libs -->
     <link rel="stylesheet" href="./js/qtip/jquery.qtip.min.css" />
     <script src="./js/qtip/jquery.qtip.min.js"></script>
 
@@ -22,25 +25,26 @@
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/styleVocab.css">
     <script type="text/javascript" src="./js/TobiasVocabExplorer.js"></script>
-
   </head>
   <body>
     <div class="wrapper">
       <header>
         <h1>Bibliography of British and Irish History Vocabulary Explorer</h1>
-        <div id='toggleSynsPara'>
+        <div id='sticky-header'>
           <p><input type="text" value="" id="search-input" placeholder="Search">
           or <button type='button' id='toggleSyns' accesskey='t'>show/hide</button> the <span class="relatedTerm-info">related</span> and <span class="usedFor-info">non-preferred</span> terms in the tree.</p>
           <p id='breadcrumb'></p>
         </div>
       </header>
 
-    <section>
-      <div id="tobias-jsTree"></div>
-    </section>
+      <section>
+        <div id="tobias-jsTree"></div>
+      </section>
 
-    <footer>
-      <p class="view"><a href="https://github.com/ihr-webmaster/vocab-explorer">View the Project on GitHub <small></small></a></p>
-      <p><small>Hosted on GitHub Pages — <a href="https://github.com/pages-themes/minimal">Minimal theme</a></small></p>
-    </footer>
-</body></html>
+      <footer>
+        <p class="view"><a href="https://github.com/ihr-webmaster/vocab-explorer">View the Project on GitHub <small></small></a></p>
+        <p><small>Hosted on GitHub Pages — <a href="https://github.com/pages-themes/minimal">Minimal theme</a></small></p>
+      </footer>
+    </div>
+  </body>
+</html>

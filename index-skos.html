@@ -1,18 +1,23 @@
 <!DOCTYPE html>
-<!-- saved from url=(0039)https://pages-themes.github.io/minimal/ -->
-<html lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width">
+    <meta name="description" content="Bibliography of British and Irish History SKOS explorer UI">
+    <meta name="keywords" content="Institute of Historical Research, IHR, BBIH, Tobias, volcabulary, bibliography, SKOS" />
+
     <title>Bibliography of British and Irish History Skos Explorer</title>
 
-    <meta name="viewport" content="width=device-width">
-
-    <!-- JSTree jquery plugin libs @src https://www.jstree.com/ -->
-    <link rel="stylesheet" href="./js/jstree/themes/proton/style.css" />
+    <!-- Jquery from the CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+
+    <!-- jsTree jquery libs -->
+    <link rel="stylesheet" href="./js/jstree/themes/proton/style.css" />
     <script type="text/javascript" src="./js/jstree/jstree.min.js"></script>
 
-    <!-- Tangle and TangleKit libs @src http://worrydream.com/Tangle/ -->
+    <!-- Tangle and TangleKit libs -->
     <script type="text/javascript" src="./js/TangleKit/Tangle.js"></script>
     <link rel="stylesheet" href="./js/TangleKit/TangleKit.css" type="text/css">
     <script type="text/javascript" src="./js/TangleKit/mootools.js"></script>
@@ -24,14 +29,14 @@
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/styleSkos.css">
     <script type="text/javascript" src="./js/TobiasSkosExplorer.js"></script>
-
   </head>
+
   <body>
     <div class="wrapper">
       <header>
         <h1>Bibliography of British and Irish History Skos Explorer</h1>
 
-         <div id="skosConceptMain">
+        <div id="skosConceptMain">
           <h4>Generated skos:Concept</h4>
           <div class="field">
             <label>Concept name</label>:<br />
@@ -56,20 +61,20 @@
     <strong><span data-var="conceptDisplay" /></strong>
   <span>&lt;/skos:prefLabel&gt;</span>
 <span>&lt;/skosConcept&gt;</span></code>
-          </pre>
+</pre>
 
         </div><!-- End id='skosConceptMain -->
-
       </header>
+
       <section>
+        <p>Click a term in the tree below to view it as SKOS markup.</p>
+        <div id="tobias-jsTree"></div>
+      </section>
 
-      <p>Click a term in the tree below to view it as SKOS markup.</p>
-
-      <div id="tobias-jsTree"></div>
-
-    </section>
-    <footer>
-      <p class="view"><a href="https://github.com/ihr-webmaster/vocab-explorer">View the Project on GitHub <small></small></a></p>
-      <p><small>Hosted on GitHub Pages — <a href="https://github.com/pages-themes/minimal">Minimal theme</a></small></p>
-    </footer>
-</body></html>
+      <footer>
+        <p class="view"><a href="https://github.com/ihr-webmaster/vocab-explorer">View the Project on GitHub <small></small></a></p>
+        <p><small>Hosted on GitHub Pages — <a href="https://github.com/pages-themes/minimal">Minimal theme</a></small></p>
+      </footer>
+    </div>
+  </body>
+</html>

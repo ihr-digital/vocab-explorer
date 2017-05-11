@@ -1,14 +1,14 @@
 /* The syns/search/info paragraph */
-#toggleSynsPara {
+#sticky-header {
   max-width: 50%;
 }
-#toggleSynsPara p {
+#sticky-header p {
   margin-bottom: 5px;
 }
-#toggleSynsPara p:last-of-type {
+#sticky-header p:last-of-type {
   margin-bottom: 10px;
 }
-#toggleSynsPara input {
+#sticky-header input {
   box-shadow: inset 0 0 4px #eee;
   width:120px;
   margin:0;

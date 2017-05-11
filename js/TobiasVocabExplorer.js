@@ -143,7 +143,7 @@ $(document).ready(function(){
 
     // Keep the Toggle synonymns paragraph/button on screen as you scroll down.
     var $window = $(window),
-        $sticky = $('#toggleSynsPara'),
+        $sticky = $('#sticky-header'),
         stickyTop = $sticky.offset().top;
     $window.scroll(function() {
       $sticky.toggleClass('sticky', $window.scrollTop() + 10 > stickyTop);
