@@ -1,26 +1,30 @@
 /**
  * BBIH Vocabulary as a HTML jsTree view
+ * (with SKOS snippet)
  * TOBIAS Project, IHR Digital, 2017-05
  */
 
-// The synonymn span selector and state variable for visibility
+// The tree and synonymn span selectors, a state variable for initial
+// visibility of synonymns, and the reverse lookup synonymn dictionary.
 var synSelector = '.usedFor, .relatedTerm, .usedFor-multi, .usedFor-multi-factor';
+var treeSelector = '#tobias-jsTree';
 var synVisible = false;
+
 
 $( document ).ready(function(){
     // Initialise the tree and setup handlers
-    $('#tobias-jsTree')
-    // As nodes are opened, obey global synonymn visibility state
-    .on('before_open.jstree', function (e, data) {
+    $(treeSelector)
+    // When tree is ready and when nodes are opened obey synonymn visibility state
+    .on('ready.jstree before_open.jstree', function (e, data) {
       if (synVisible == false) {
         $(this).find(synSelector).hide();
       } else {
         $(this).find(synSelector).show();
       }
     })
-    // When nodes are selected, trigger event of the same name on #SKOSConceptMain
+    // When nodes are selected, trigger tangle on the #sticky-header
     .on('select_node.jstree', function (e, data) {
-      $('#skosConceptMain').trigger('select_node.jstree', [ data ]);
+      $('#sticky-header').trigger('select_node.jstree', [ data ]);
     })
     // Create/init the tree
     .jstree({
@@ -43,6 +47,9 @@ $( document ).ready(function(){
           'icon' : 'glyphicon glyphicon-ok',
         },
       },
+      'state' : {
+        'ttl' : 86400000,  // 1 day in milliseconds
+      },
       // Customise some node types and persist opened state
       'plugins' : [ 'types', 'state' ],
     });
@@ -50,24 +57,20 @@ $( document ).ready(function(){
 
     // Bind jstree event of the same name. Events are triggered from
     // the tree and we get the same event/data params.
-    $('#skosConceptMain').on('select_node.jstree', function (e, data) {
+    $('#sticky-header').on('select_node.jstree', function (e, data) {
       $selectedNode = $(data.instance.get_node(data.selected, true));
 
       // Select the values out of the node and put into the tangle object.
       skosTangle.setValue('concept', $selectedNode.find('span.term:first').text());
     });
 
-
-    // Resize the SKOS code box when mouse hovers over it.
-    codeBoxDefaultWidth = $('#skosConceptMain pre.xml').width();
-    $('#skosConceptMain pre.xml').on('mouseenter', function(){
-      w = $(this).find('code').width() + 15;
-      $(this).animate({ width: w });
-    })
-    .on('mouseleave', function(){
-      $(this).animate({ width: codeBoxDefaultWidth });
-    });
-
+    // Keep the sticky-header on screen as you scroll down.
+    var $window = $(window),
+    $sticky = $('#sticky-header'),
+    stickyTop = $sticky.offset().top;
+      $window.scroll(function() {
+        $sticky.toggleClass('sticky', $window.scrollTop() + 10 > stickyTop);
+      });
 });
 
 
@@ -108,7 +111,7 @@ Tangle.classes.TBTextField = {
   },
 
   getValue: function () {
-        var value = this.input.get("value");  // TODO: sanitise string value?
+        var value = this.input.get("value");
         return value;
   },
 
@@ -124,7 +127,7 @@ Tangle.classes.TBTextField = {
 
 // Tangle Setup and other functions.
 function setUpTangle () {
-    var element = document.getElementById("skosConceptMain");
+    var element = document.getElementById("sticky-header");
 
     var tangle = new Tangle(element, {
         initialize: function () {

@@ -1,13 +1,14 @@
 /**
  * BBIH Vocabulary as a HTML jsTree view
+ * (with synonymns, context menus and search)
  * TOBIAS Project, IHR Digital, 2017-05
  */
 
-// The tree and synonymn span selectors, a state variable for initial 
+// The tree and synonymn span selectors, a state variable for initial
 // visibility of synonymns, and the reverse lookup synonymn dictionary.
 var synSelector = '.usedFor, .relatedTerm, .usedFor-multi, .usedFor-multi-factor';
-var synVisible = true;
 var treeSelector = '#tobias-jsTree';
+var synVisible = true;
 var synLookup = {};  // The syn reverse lookup dict.
 
 
@@ -88,10 +89,6 @@ $(document).ready(function(){
         // 'ttl' : 86400000,  // 1 day in milliseconds
         'ttl' : 60000,  // 30 seconds in milliseconds
       },
-      // 'search': {
-      //   'case_insensitive': true,
-      //   'show_only_matches' : true,
-      // },
       // Customise some node types and persist opened state
       'plugins' : [ 'types', 'state', 'search' ],
     });
@@ -141,16 +138,7 @@ $(document).ready(function(){
     });
 
 
-    // Keep the Toggle synonymns paragraph/button on screen as you scroll down.
-    var $window = $(window),
-        $sticky = $('#sticky-header'),
-        stickyTop = $sticky.offset().top;
-    $window.scroll(function() {
-      $sticky.toggleClass('sticky', $window.scrollTop() + 10 > stickyTop);
-    });
-
-
-    // // Bind the search box keystrokes to the jstree search
+    // Bind the search box keystrokes to the jstree search
     // var tOut = false;
     $("#search-input").keyup(function() {
       clearTimeout($.data(this, 'timer'));
@@ -160,6 +148,15 @@ $(document).ready(function(){
       }, 1000);
       $(this).data('timer', wait);
     });
+
+    // Keep the sticky-header on screen as you scroll down.
+    var $window = $(window),
+    $sticky = $('#sticky-header'),
+    stickyTop = $sticky.offset().top;
+      $window.scroll(function() {
+        $sticky.toggleClass('sticky', $window.scrollTop() + 10 > stickyTop);
+      });
+
 
 });
 
