@@ -62,6 +62,7 @@ $( document ).ready(function(){
 
       // Select the values out of the node and put into the tangle object.
       skosTangle.setValue('concept', $selectedNode.find('span.term:first').text());
+      skosTangle.setValue('ident', $selectedNode.find('span.term:first').data('rhs-id'));
     });
 
     // Keep the sticky-header on screen as you scroll down.
