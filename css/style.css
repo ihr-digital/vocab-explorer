@@ -125,7 +125,8 @@ span.parenFirst:before {
 a span.parenLast:after {
   content: ')' !important;
 }
-span.usedFor {
+span.usedFor,
+span.usedFor-introduction {
   font-style: italic;
 }
 /* multi-factor needs to use ALL synonymns*/

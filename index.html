@@ -6,20 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <meta name="viewport" content="width=device-width">
     <meta name="description" content="Bibliography of British and Irish History vocabulary explorer UI">
-    <meta name="keywords" content="Institute of Historical Research, IHR, BBIH, Tobias, volcabulary, bibliography" />
+    <meta name="keywords" content="Institute of Historical Research, IHR, BBIH, Tobias, vocabulary, bibliography" />
 
-    <title>Bibliography of British and Irish History vocabulary explorer</title>
-
-    <!-- Jquery from the CDN -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-
-    <!-- jsTree jquery libs -->
-    <link rel="stylesheet" href="./js/jstree/themes/proton/style.css" />
-    <script type="text/javascript" src="./js/jstree/jstree.min.js"></script>
-
-    <!-- qTip2 tooltips libs -->
-    <link rel="stylesheet" href="./js/qtip/jquery.qtip.min.css" />
-    <script src="./js/qtip/jquery.qtip.min.js"></script>
+    <title>Bibliography of British and Irish History vocabulary explorer introduction</title>
 
     <!-- Tobias Explorer - css and js setup scripts -->
     <link rel="stylesheet" href="./css/style.css">
@@ -38,16 +27,33 @@
   <body>
     <div class="wrapper">
       <header>
-        <h1>Bibliography of British and Irish History Vocabulary Explorer</h1>
-        <div id='sticky-header'>
-          <p><input type="text" value="" id="search-input" placeholder="Search">
-          or <button type='button' id='toggleSyns' accesskey='t'>show/hide</button> the <span class="relatedTerm-info">related</span> and <span class="usedFor-info">non-preferred</span> terms in the tree.</p>
-          <p id='breadcrumb'></p>
-        </div>
-      </header>
+        <h1>Introduction to the Vocabulary Explorer</h1>
 
       <section>
-        <div id="tobias-jsTree"></div>
+        <div id="intro">
+<p>The interactive part of this site has two main pages: <a href="https://ihr-webmaster.github.io/vocab-explorer/vocab-explorer.html">a vocabulary explorer</a>, which allows you to browse and search the RHS Vocabulary, and <a href="https://ihr-webmaster.github.io/vocab-explorer/skos-explorer.html">a SKOS explorer</a>, which allows you to generate SKOS for a particular term in the vocabulary.</p>
+
+<h3>Vocabulary explorer</h3>
+<p>Use this page to navigate the RHS Vocabulary of British and Irish History. You can use the button at the top of the page to show the tree alone (which is easier for navigation) or the tree with non-preferred and related terms.</p>
+ 
+<p>The terms are usually listed in order:</p>
+ 
+<p>Use the + (plus) and – (minus) keys to broaden and narrow the terms.</p>
+ 
+<p>The term to be used is in <span class="term">bold</span>.</p>
+ 
+<p>Terms <span class="usedFor-introduction">in grey italics</span> are non-preferred terms which have a single term that should be used instead. Click on the grey term to see the preferred term.</p>
+ 
+<p>Terms in grey non-italic are non-preferred terms which have more than one term to be used instead.</p>
+ 
+<p>Terms in <span class="usedFor-info">red</span> have more than one preferred term and these must all be used as well. Click on the red term to see a drop-down list of all the terms which must be used; blue terms in this drop-down list are in different parts of the tree from your current location: click on the light blue term to go to its position in the tree. The same term may appear more than once in this list reflecting the terms multiple locations within the tree.</p>
+
+
+<p>Terms <span class="relatedTerm-info">in blue</span> are related terms. These are terms which you might wish to consider using alongside the preferred term; light blue terms in this drop-down list are in different parts of the tree from your current location: click on the light blue term to go to its position in the tree. The same term may appear more than once in this list reflecting the terms multiple locations within the tree.</p>
+<h3>SKOS explorer</h3>
+<p>The SKOS explorer allows you to see the SKOS markup for any term in the RHS vocabulary. Simply navigate to the term whose SKOS represetntation you would like to see and click on it.</p>
+
+	</div>
       </section>
 
       <footer>
