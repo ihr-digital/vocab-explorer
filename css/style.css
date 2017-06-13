@@ -93,7 +93,9 @@ span.firstSynonymn {
 }
 
 /* Synonymn tags *********************************************************************/
-span.term {
+span.term,
+span.term-intro{
+    
   color: #222222;
 }
 span.term + span {  /* First syn span */
